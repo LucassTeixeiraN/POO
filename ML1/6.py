@@ -1,3 +1,8 @@
+# 6. Um dado material radioativo perde metade de sua massa a cada 50s. Dada a massa
+# inicial em gramas, fazer um algoritmo que determine o tempo necessário para que
+# essa massa seja menor que 0,5g.
+
+
 def calcular_tempo(massa_inicial):
     # Define o intervalo de tempo em segundos
     intervalo = 50
