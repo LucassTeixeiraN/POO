@@ -7,10 +7,10 @@ def registrarBoi():
     bois = {}
     while True:
         try:
-            numero = int(input("Insira o número do boi (Digite 0 para finalizar o registro)"))
+            numero = int(input("Insira o número do boi (Digite 0 para finalizar o registro): "))
             if numero == 0:
                 break
-            peso = float(input("Insira o peso desse boi"))
+            peso = float(input("Insira o peso desse boi: "))
             bois[numero] = peso
 
         except ValueError:
@@ -18,15 +18,39 @@ def registrarBoi():
     return bois
     
 def maisPesado(bois_dict):
-    mais_pesado = 0
+    maior_peso = 0
     for chave, valor in bois_dict.items():
-        if bois_dict[chave] > mais_pesado:
-            mais_pesado = bois_dict[chave]
-    return mais_pesado
+        if valor > maior_peso:
+            maior_peso = valor
+            numero_mais_pesado = chave
+
+    return (numero_mais_pesado, maior_peso)
+
+def maisMagro(bois_dict):
+    menor_peso = 0
+    for chave, valor in bois_dict.items():
+        if valor < menor_peso or menor_peso == 0:
+            menor_peso = valor
+            numero_mais_leve = chave
+    
+    return (numero_mais_leve, menor_peso)
+
+def pesoTotal(bois_dict):
+    peso_soma = 0
+    for valor in bois_dict.values():
+        peso_soma += valor
+    
+    return peso_soma
 
 def main():
     bois_dict = registrarBoi()
-    print(maisPesado(bois_dict))
-    
-
+    print("-"*60)
+    print(f"O boi mais gordo era o de numeração {maisPesado(bois_dict)[0]}, pesando {maisPesado(bois_dict)[1]} kg.")
+    print(f"O boi mais magro era o de numeração {maisMagro(bois_dict)[0]}, pesando {maisMagro(bois_dict)[1]} kg.")
+    print(f"Somados, todos os bois pesam {pesoTotal(bois_dict)} kg.")
+    print("-"*60)
 main()
+
+#OBS: 
+# entrar com a mesma numeração
+# peso negativo
