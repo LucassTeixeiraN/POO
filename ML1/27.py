@@ -14,9 +14,9 @@ c. Imprima o preço médio de venda dos livros (com lucro de 20%).
 d. Imprima o preço de venda dos livros mais barato e mais caro.'''
 
 def precoMin(custo, copias):
-    lucro = 1.2 * custo
-    preco = lucro/copias
-
+   
+    vendas = 1.2*custo
+    preco = vendas/copias
     return preco
 
 def main():
@@ -40,6 +40,11 @@ def main():
 
             if paginas > 0 and 1 <= encadernacao <= 3 and copias > 0:
                 custoTotal = (paginas*0.03 + preco_enc)*copias + CUSTO_FIXO
+                print(custoTotal)
+                print(precoMin(custoTotal, copias))
+        except ValueError:
+            print("valor inválido")
+    
 main()
 
 #OBS: Tenho q terminar
