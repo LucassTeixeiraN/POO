@@ -13,38 +13,81 @@ b. Imprima o total de livros analisados.
 c. Imprima o preço médio de venda dos livros (com lucro de 20%).
 d. Imprima o preço de venda dos livros mais barato e mais caro.'''
 
+# Define o tipo de encadernação
+#OBS: Tirei da main pq achei q ia ocupar muito espaço
+def tipoEncad():
+    while True:
+        tipo = int(input("Insira o tipo de encadernação.\n1 - Simples\n2 - Especial\n3 - Luxo\n"))
+        if tipo == 1:
+            return 4.3
+        elif tipo == 2:
+            return 7.8
+        elif tipo == 3:
+            return 10.5
+        else:
+            print("Tipo de encadernação inválido.")
+            print("-"*60)
+
+# Calcula o preço do livro para que se tenha 20% de lucro
 def precoMin(custo, copias):
-   
     vendas = 1.2*custo
     preco = vendas/copias
     return preco
 
+def precoMedio(preco, n):
+    preco_soma = 0
+    for i in preco:
+        preco_soma += i
+    
+    return preco_soma/n
+
+def maisBarato(precos):
+    mais_barato = precos[0]
+
+    for i in precos:
+        if i < mais_barato:
+            mais_barato = i
+
+    return mais_barato
+
+def maisCaro(precos):
+    mais_caro = precos[0]
+
+    for i in precos:
+        if i > mais_caro:
+            mais_caro = i
+    return mais_caro
+
+
 def main():
     CUSTO_FIXO = 4397
     n_livros = 0
+    precos = []
     while True:
         try:
+            print("-"*60)
             paginas = int(input("Insira o número de páginas do livro (insira 0 caso não haja mais livros)"))
             if paginas == 0:
                 break
-            n_livros += 1
-            encadernacao = int(input("Insira o tipo de encadernação.\n1 - Simples\n2 - Especial\n3 - Luxo\n"))
-            if encadernacao == 1:
-                preco_enc = 4.3
-            elif encadernacao == 2:
-                preco_enc = 7.8
-            else:
-                preco_enc = 10.5
+
+            preco_enc = tipoEncad()
 
             copias = int(input("Insira o número de cópias previstas: "))
+            
+            n_livros += 1
 
-            if paginas > 0 and 1 <= encadernacao <= 3 and copias > 0:
-                custoTotal = (paginas*0.03 + preco_enc)*copias + CUSTO_FIXO
-                print(custoTotal)
-                print(precoMin(custoTotal, copias))
+            if paginas > 0 and copias > 0:
+                custo_total = (paginas*0.03 + preco_enc)*copias + CUSTO_FIXO
+                custo_minimo = precoMin(custo_total, copias)
+                print(f"\nO preço do livro pra que se tenha um lucro de 20% é de R${custo_minimo:.2f}.")
+                precos.append(custo_minimo)
+
         except ValueError:
             print("valor inválido")
     
+    print("-"*60)
+    print(f"{n_livros} foram analisados.")
+    print(f"O preço médio de venda foi de R${precoMedio(precos, n_livros):.2f}.")
+    print(f"O livro mais barato é vendido por R${maisBarato(precos):.2f}.")
+    print(f"O livro mais caro é vendido por R${maisCaro(precos):.2f}.")
 main()
-
-#OBS: Tenho q terminar
