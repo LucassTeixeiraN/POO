@@ -7,11 +7,17 @@ def FparaC(temperatura):
     return 5 * (temperatura - 32) / 9
 
 def print_lista(lista: list[int]):
-    for index, item in enumerate(lista, 1):
-        if index % 5:
-            print(f'{item:.2f}', end=' ')
+    # for index, item in enumerate(lista, 1):
+    #     if index % 5:
+    #         print(f'{item:.2f}', end=' ')
+    #     else:
+    #         print(f'{item:.2f}')
+            
+    for i in range(len(lista)):
+        if i % 5:
+            print(f'{lista[i]:.2f}', end=' ')
         else:
-            print(f'{item:.2f}')
+            print(f'{lista[i]:.2f}')
         
 
 def main():
@@ -20,7 +26,7 @@ def main():
     PASSO = 5
     
     fahrenheit_lista = []
-    for num in range(INICIO, FIM + 1, PASSO):
+    for num in range(INICIO, FIM, PASSO):
         fahrenheit_lista.append(FparaC(num))
     
     print_lista(fahrenheit_lista)
