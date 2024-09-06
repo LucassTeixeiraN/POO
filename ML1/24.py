@@ -13,32 +13,59 @@ d. O total de consumo (em kWh) para cada um dos três tipos de consumidores
 e. A média de consumo (em kWh) para cada um dos três tipos de consumidores
 f. O total arrecadado pela companhia elétrica."""
 
+def kwh_input():
+    try:
+        valor = float(input("Digite o preço do kWh: "))
+        return valor
+    except:
+        print("Kwh inválido. Digite novamente!")
+        return kwh_input()
+
 def input_usuario():
-    valor_kwh = float(input("Digite o preço do kWh: "))
+    valor_kwh = kwh_input()
     
     continuar = 'S'
     consumidores = []
     while continuar == 'S':
-        num_identificacao = input("Digite o número de identificação: ")
-        quantidade_consumida = float(input("Digite a quantidade de kWh consumida no mês: "))
-        codigo_consumidor = input("Digite o código (residencial, comercial ou industrial): ")
-        
-        consumidores.append({
-            'numero': num_identificacao,
-            'quantidade': quantidade_consumida,
-            'valor': quantidade_consumida * valor_kwh,
-            'codigo': codigo_consumidor
-        })
-        
-        continuar = input("Deseja continuar? (S/N)").upper().strip()
+        try:
+            num_identificacao = input("Digite o número de identificação: ")
+            quantidade_consumida = float(input("Digite a quantidade de kWh consumida no mês: "))
+            codigo_consumidor = input("Digite o código (residencial, comercial ou industrial): ")
+            
+            if not codigo_consumidor in ['residencial', 'comercial','industrial']:
+                raise Exception
+            
+            consumidores.append({
+                'numero': num_identificacao,
+                'quantidade': quantidade_consumida,
+                'valor': quantidade_consumida * valor_kwh,
+                'codigo': codigo_consumidor
+            })
+            
+            continuar = input("Deseja continuar? (S/N)").upper().strip()
+        except:
+            print('Input inválido! Digite novamente.')
 
     return consumidores
 
+def max_lista(lista):
+    maior = 0
+    for item in lista:
+        if item['quantidade'] > maior:
+            maior = item['quantidade']
+    return maior
+
+def min_lista(lista):
+    menor = lista[0]['quantidade']
+    for item in lista:
+        if item['quantidade'] < menor:
+            menor = item['quantidade']
+    return menor
+
 def main():
-    
     consumidores = input_usuario()
-    consumidor_maior_consumo = max(consumidores, key=lambda x: x['quantidade'])
-    consumidor_menor_consumo = min(consumidores, key=lambda x: x['quantidade'])
+    consumidor_maior_consumo = max_lista(consumidores)
+    consumidor_menor_consumo = min_lista(consumidores)
     total, qtd_consumidores = {}, {}
     
     for consumidor in consumidores:
@@ -55,8 +82,8 @@ def main():
         
         print(f"Total a pagar pelo consumidor {consumidor['numero']}: {consumidor['valor']}")
         
-    print(f"\nO consumidor {consumidor_maior_consumo['numero']} foi verificado com o maior consumo, sendo de: {consumidor_maior_consumo['valor']}")
-    print(f"O consumidor {consumidor_menor_consumo['numero']} foi verificado com o menor consumo, sendo de: {consumidor_menor_consumo['valor']}\n")
+    print(f"\nO maior consumo verificado foi {consumidor_maior_consumo}")
+    print(f"O menor consumo verificado foi: {consumidor_menor_consumo}\n")
     for key in ['residencial', 'comercial', 'industrial']:
         if key in total:
             print(f'O total de consumo pelo código {key} foi: {total[key]}')
