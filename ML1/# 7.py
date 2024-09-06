@@ -33,3 +33,4 @@ def calcular_balanco():
 
 # Chama a função para executar o programa
 calcular_balanco()
+ # colocar mais funções 
