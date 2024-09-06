@@ -12,7 +12,7 @@ def coletarNota():
     while True:
         try:
             nota = int(input("Insira a nota do aluno(0-100): "))
-            if nota >= 0 and nota <= 100:
+            if nota >= 0:
                 return nota
             print("Valor inválido")
             continue
@@ -28,23 +28,27 @@ def subirNivel(nota):
 def main():
     nivel = 1
     tentativa = 1
-    nota_acumulada = nota_nivel = 0
+    nota_acumulada = nota_nivel_acumulada = 0
     while True:
-        nota_nivel += coletarNota()
+        nota_nivel = coletarNota()
+        nota_nivel_acumulada += nota_nivel
         nota_acumulada += nota_nivel
-        tentativa += 1
         
-        if tentativa == 5:
+        
+        if tentativa == 5 and nivel > 1:
             if nota_acumulada < 300:
                 print("Voltando um nível.")
                 nivel -= 1
             nota_acumulada = 0
             tentativa = 0
-        elif subirNivel(nota_nivel):
+        elif tentativa == 5 and nivel <= 1:
+            nota_acumulada = 0
+            tentativa = 0
+        elif subirNivel(nota_nivel_acumulada):
             print("Parabéns! Você subiu de nivel.")
             nivel += 1
             tentativa = 0
-            nota_nivel = 0
+            nota_nivel_acumulada = 0
         else:
             tentativa += 1
         
