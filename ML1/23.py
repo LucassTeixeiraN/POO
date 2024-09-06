@@ -40,8 +40,19 @@ def calcular_percentagens(respostas):
     total = sum(respostas.values())
     return {k: (v / total) * 100 for k, v in respostas.items()}
 
-def encontrar_idades_extremas(idades):
-    return max(idades), min(idades)
+def max_idades(idades):
+    maior = 0
+    for item in idades:
+        if item > maior:
+            maior = item
+    return maior
+
+def min_idades(idades):
+    menor = idades[0]
+    for item in idades:
+        if item < menor:
+            menor = item
+    return menor
 
 def imprimir_resultados(respostas, percentagens, idade_mais_velha, idade_mais_nova):
     print("-"* 30, "\nQuantidade de respostas:")
@@ -61,7 +72,8 @@ def main():
     print("-"*30,"Bem-vindo ao programa de avaliação de filmes!","-"*30)
     respostas, idades = ler_dados()
     percentagens = calcular_percentagens(respostas)
-    idade_mais_velha, idade_mais_nova = encontrar_idades_extremas(idades)
+    idade_mais_velha = max_idades(idades)
+    idade_mais_nova = min_idades(idades)
     imprimir_resultados(respostas, percentagens, idade_mais_velha, idade_mais_nova)
 
 main()
