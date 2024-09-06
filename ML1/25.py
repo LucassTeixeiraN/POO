@@ -14,24 +14,48 @@ e. A percentagem de indivíduos de sexo feminino cuja idade está entre 18 e 35
 anos inclusive e que tenham olhos verdes e cabelos louros.
 O final do conjunto de habitantes é reconhecido pelo valor -1 para a idade.'''
 
+def max_lista(lista):
+    maior = 0
+    for item in lista:
+        if item > maior:
+            maior = item
+    return maior
+
+def min_lista(lista):
+    menor = lista[0]
+    for item in lista:
+        if item < menor:
+            menor = item
+    return menor
+
+def media_lista(lista):
+    tamanho = soma = 0
+    for item in lista:
+        soma += item
+        tamanho += 1
+    return soma / tamanho
+
 def input_usuario():
     habitantes = []
     
     while True:
-        idade = int(input("Digite a idade (ou -1 para encerrar): "))
-        if idade == -1:
-            break
+        try:
+            idade = int(input("Digite a idade (ou -1 para encerrar): "))
+            if idade == -1:
+                break
 
-        sexo = input("Digite o sexo (M/F): ").strip().upper()
-        cor_olhos = input("Digite a cor dos olhos (azuis, verdes, castanhos): ").strip().lower()
-        cor_cabelos = input("Digite a cor dos cabelos (louros, castanhos, pretos): ").strip().lower()
+            sexo = input("Digite o sexo (M/F): ").strip().upper()
+            cor_olhos = input("Digite a cor dos olhos (azuis, verdes, castanhos): ").strip().lower()
+            cor_cabelos = input("Digite a cor dos cabelos (louros, castanhos, pretos): ").strip().lower()
 
-        habitantes.append({
-            "idade": idade,
-            "sexo": sexo,
-            "cor_olhos": cor_olhos,
-            "cor_cabelos": cor_cabelos
-        })
+            habitantes.append({
+                "idade": idade,
+                "sexo": sexo,
+                "cor_olhos": cor_olhos,
+                "cor_cabelos": cor_cabelos
+            })
+        except:
+            print("Input inválido. Digite novamente!")
     
     return habitantes
 
@@ -56,16 +80,11 @@ def calcula_estatisticas(habitantes):
         
         idades.append(idade)
     
-    maior_idade = max(idades)
-    menor_idade = min(idades)
-    media_idade = sum(idades) / total_entrevistados
-    percentual_mulheres_18_35 = total_mulheres_18_35 / total_mulheres * 100
+    maior_idade = max_lista(idades)
+    menor_idade = min_lista(idades)
+    media_idade = media_lista(idades)
+    percentual_mulheres_18_35 = total_mulheres_18_35 / total_entrevistados * 100
     
-    return total_entrevistados, total_homens, total_mulheres, maior_idade, menor_idade, media_idade, percentual_mulheres_18_35
-
-
-
-def exibe_resultados(total_entrevistados, total_homens, total_mulheres, maior_idade, menor_idade, media_idade, percentual_mulheres_18_35):
     print(f"Total de entrevistados: {total_entrevistados}")
     print(f"Total de homens: {total_homens}")
     print(f"Total de mulheres: {total_mulheres}")
@@ -74,9 +93,12 @@ def exibe_resultados(total_entrevistados, total_homens, total_mulheres, maior_id
     print(f"Média de idade: {media_idade:.2f}")
     print(f"Percentagem de mulheres de 18 a 35 anos com olhos verdes e cabelos louros: {percentual_mulheres_18_35:.2f}%")
 
+
 def main():
     habitantes = input_usuario()
-    estatisticas = calcula_estatisticas(habitantes)
-    exibe_resultados(*estatisticas)
+    if habitantes:
+        calcula_estatisticas(habitantes)
+    else:
+        print("O conjunto está vazio.")
 
 main()
