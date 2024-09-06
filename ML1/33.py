@@ -12,9 +12,14 @@ def calculo_pi(precisao):
   return pi
 
 def main():
-  precisao_pi = int(input('Digite a precisão desejada para o cálculo de π: '))
-  valor_pi = calculo_pi(precisao_pi)
+  while True:
+    try:
+      precisao_pi = int(input('Digite a precisão desejada para o cálculo de π: '))
+      valor_pi = calculo_pi(precisao_pi)
 
-  print(f'O valor de π com precisão de {precisao_pi} termos é {valor_pi}')
+      print(f'O valor de π com precisão de {precisao_pi} termos é {valor_pi}')
+      break
+    except:
+      print('Input inválido. Digite novamente')
 
 main()
