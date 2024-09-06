@@ -12,7 +12,7 @@ def coletarNota():
     while True:
         try:
             nota = int(input("Insira a nota do aluno(0-100): "))
-            if nota >= 0:
+            if nota >= 0 and nota <= 100:
                 return nota
             print("Valor inválido")
             continue
