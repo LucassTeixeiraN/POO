@@ -13,14 +13,14 @@ def calcQuadrad(numero):
 def perguntRaiz(quadrado):
     resposta = input(f"Qual é a raiz quadrada de {quadrado}? \n")
     try:
-        resposta = float(resposta)
+        resposta = int(resposta)
     except ValueError:
         print("Erro! Por favor, digite um número.")
         return perguntRaiz(quadrado)
     return resposta
 
 def verifResp(resposta, numero_aleatorio):
-    return abs(resposta - numero_aleatorio) < 0.01
+    return resposta == numero_aleatorio
 
 def msgERRO(numero_aleatorio, quadrado):
     print(f"Erro! A raiz quadrada de {quadrado} é {numero_aleatorio}. Continue tentando!")
@@ -57,5 +57,3 @@ def main():
 
 main()
 
-
-# nao tenho certeza do porque ta funcionando mas eu acho q ta certo vambora
