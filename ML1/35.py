@@ -5,16 +5,33 @@ feita a opção, o programa deve chamar uma função que leia do usuário os par
 necessários para o cálculo escolhido e a seguir usar uma das funções que você já
 implementou.'''
 
-import math
+def fatorial(N):
+    if N == 0:
+        return 1
+    return N * fatorial(N-1)
 
 def graus_para_radiano(graus):
-    return math.radians(graus)
+    rad = (graus * calculo_pi())/180
+    return rad
 
 def calculo_seno(angulo_rad):
-    return math.sin(angulo_rad)
+    sen = 0
+    sinal = 1
+    for i in range(10):
+        sen += ((angulo_rad**(2*i+1)) / fatorial(2*i+1)) * sinal
+        sinal *= -1
+            
+    return sen
 
 def calculo_pi():
-    return math.pi
+    pi = 0
+    sinal = 1
+    divisor = 1
+    for i in range(1, 1_000_000):
+        pi += (4 / divisor) * sinal
+        sinal *= -1
+        divisor += 2
+    return pi
 
 def equacao_segundo_grau(a, b, c):
     delta = b**2 - 4*a*c
@@ -24,7 +41,7 @@ def equacao_segundo_grau(a, b, c):
         x = -b / (2*a)
         return f"A equação tem uma raiz real: x = {x}"
     else:
-        raiz_delta = math.sqrt(delta)
+        raiz_delta = delta ** (1/2)
         x1 = (-b + raiz_delta) / (2*a)
         x2 = (-b - raiz_delta) / (2*a)
         return f"A equação tem duas raízes reais: x1 = {x1} e x2 = {x2}"
