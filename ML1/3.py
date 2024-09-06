@@ -10,9 +10,14 @@ def registrarBoi():
             numero = int(input("Insira o número do boi (Digite 0 para finalizar o registro): "))
             if numero == 0:
                 break
-            peso = float(input("Insira o peso desse boi: "))
-            bois[numero] = peso
-
+            elif not numero in bois: 
+                peso = float(input("Insira o peso desse boi: "))
+                if peso > 0:
+                    bois[numero] = peso
+                else:
+                    print("Peso inválido")
+            else:
+                print("Já existe um boi com essa numeração")
         except ValueError:
             print("Valores inválidos")
     return bois
@@ -50,7 +55,3 @@ def main():
     print(f"Somados, todos os bois pesam {pesoTotal(bois_dict)} kg.")
     print("-"*60)
 main()
-
-#OBS: 
-# entrar com a mesma numeração
-# peso negativo
