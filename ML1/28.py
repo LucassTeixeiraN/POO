@@ -18,6 +18,27 @@ b. Imprimir o total de salários pagos.
 c. Imprimir a média das comissões.
 d. Imprimir o valor da maior e da menor comissão paga pelo departamento. '''
 
+def max_lista(lista):
+    maior = 0
+    for item in lista:
+        if item > maior:
+            maior = item
+    return maior
+
+def min_lista(lista):
+    menor = lista[0]
+    for item in lista:
+        if item < menor:
+            menor = item
+    return menor
+
+def media_lista(lista):
+    tamanho = soma = 0
+    for item in lista:
+        soma += item
+        tamanho += 1
+    return soma / tamanho
+
 def calcula_comissao(qtd_4k, qtd_8k):
     comissao_4k = qtd_4k * (420 if qtd_4k >= 10 else 250)
     comissao_8k = qtd_8k * (550 if qtd_8k >= 10 else 350)
@@ -37,28 +58,31 @@ def main():
     comissao_lista = []
 
     while True:
-        salario_bruto = float(input('Qual o salário do funcionário? '))
-        qtd_4k = int(input('Quantidade de TVs 4K vendidas: '))
-        qtd_8k = int(input('Quantidade de TVs 8K vendidas: '))
-        
-        comissao_4k, comissao_8k = calcula_comissao(qtd_4k, qtd_8k)
-        salario_liquido = calcula_salario_liquido(salario_bruto, comissao_4k, comissao_8k)
-        print('Salário líquido: ', salario_liquido)
+        try:
+            salario_bruto = float(input('Qual o salário do funcionário? '))
+            qtd_4k = int(input('Quantidade de TVs 4K vendidas: '))
+            qtd_8k = int(input('Quantidade de TVs 8K vendidas: '))
+            
+            comissao_4k, comissao_8k = calcula_comissao(qtd_4k, qtd_8k)
+            salario_liquido = calcula_salario_liquido(salario_bruto, comissao_4k, comissao_8k)
+            print('Salário líquido: ', salario_liquido)
 
-        qtd_funcionarios += 1
-        salario_total += salario_bruto + comissao_4k + comissao_8k
-        
-        comissao_lista.extend([comissao_4k, comissao_8k])
+            qtd_funcionarios += 1
+            salario_total += salario_bruto + comissao_4k + comissao_8k
+            
+            comissao_lista.extend([comissao_4k, comissao_8k])
 
-        if input('Deseja inserir mais funcionários? (S/N) ').strip().upper() == 'N':
-            break
+            if input('Deseja inserir mais funcionários? (S/N) ').strip().upper() == 'N':
+                break
+        except:
+            print("Input inválido. Digite novamente!")
 
     print('-' * 30)
     print('Número de funcionários: ', qtd_funcionarios)
     print('Total de salário pago: ', salario_total)
     if comissao_lista:
-        print('Média das comissões: ', sum(comissao_lista) / len(comissao_lista))
-        print(f'Maior comissão: {max(comissao_lista)} || Menor comissão: {min(comissao_lista)}')
+        print('Média das comissões: ', media_lista(comissao_lista))
+        print(f'Maior comissão: {max_lista(comissao_lista)} || Menor comissão: {min_lista(comissao_lista)}')
     else:
         print('Nenhuma comissão foi registrada.')
 
