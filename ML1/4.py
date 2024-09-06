@@ -5,7 +5,7 @@ a zero e deve rejeitar idades negativas, pedindo que o usuário redigite."""
 
 def idade_input():
     try:
-        valor = float(input("Digite a idade do aluno: "))
+        valor = int(input("Digite a idade do aluno(insira 0 para parar): "))
         return valor
     except:
         print("Número inválido. Digite novamente!")
@@ -24,6 +24,6 @@ def main():
         
         idades.append(idade)
         
-    print(f"A média da idade dos alunos é {sum(idades) / len(idades)}")
+    print(f"A média da idade dos alunos é {sum(idades) / len(idades):.2f}")
 
 main()
