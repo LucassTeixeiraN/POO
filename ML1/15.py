@@ -1,11 +1,15 @@
 # 15. Elabore um programa que calcule e mostre a soma dos 10 primeiros termos da série:
 
-import math
+def fatorial(N):
+    if N == 0:
+        return 1
+    return N * fatorial(N-1)
+
 
 def calcular_termos():
     soma = 0
     termo1 = 100
-    termo2 = math.factorial(0)
+    termo2 = fatorial(0)
 
     for _ in range(10):
         soma += termo1 / termo2
