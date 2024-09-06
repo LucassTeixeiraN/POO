@@ -7,48 +7,51 @@ acumulados. Faça um programa que compute o progresso do aluno, através da
 leitura de suas notas até que ele termine o 10o nível. Utilize o comando break (por
 exemplo, para passar ao próximo nível e recomeçar quando o aluno tiver tirado a nota
 máxima).'''
-def ler_nota():
+
+def coletarNota():
     while True:
         try:
-            nota = int(input("Digite a nota (0-100): "))
-            if 0 <= nota <= 100:
+            nota = int(input("Insira a nota do aluno(0-100): "))
+            if nota >= 0:
                 return nota
-            else:
-                print("Nota inválida. Por favor, digite uma nota entre 0 e 100.")
+            print("Valor inválido")
+            continue
         except ValueError:
-            print("Entrada inválida. Por favor, digite um número.")
+            print("Valor inválido")
+            
+def subirNivel(nota):
+    if nota >= 100:
+        return True
+    return False
 
-def verificar_progresso(nivel_atual, pontos_acumulados, tentativas):
-    if pontos_acumulados >= 100:
-        print("Parabéns, você passou para o próximo nível!")
-        return nivel_atual + 1, 0, 0
-    elif tentativas == 5 and pontos_acumulados < 300:
-        print("Você não alcançou a pontuação mínima, voltando ao nível anterior.")
-        return nivel_atual - 1, 0, 0
-    else:
-        return nivel_atual, pontos_acumulados, tentativas
-
+    
 def main():
-    nivel_atual = 1
-    pontos_acumulados = 0
-    tentativas = 0
-
-    while nivel_atual <= 10:
-        while True:
-            print(f"Nível {nivel_atual}:")
-            nota = ler_nota()
-            pontos_acumulados += nota
-            tentativas += 1
-            nivel_atual, pontos_acumulados, tentativas = verificar_progresso(nivel_atual, pontos_acumulados, tentativas)
-            if nivel_atual > 10:
-                break
-            elif pontos_acumulados >= 100:
-                break
-
-        if nivel_atual == 10 and pontos_acumulados >= 100:
-            print("Parabéns, você concluiu o 10º nível!")
+    nivel = 1
+    tentativa = 1
+    nota_acumulada = nota_nivel = 0
+    while True:
+        nota_nivel += coletarNota()
+        nota_acumulada += nota_nivel
+        tentativa += 1
+        
+        if tentativa == 5:
+            if nota_acumulada < 300:
+                print("Voltando um nível.")
+                nivel -= 1
+            nota_acumulada = 0
+            tentativa = 0
+        elif subirNivel(nota_nivel):
+            print("Parabéns! Você subiu de nivel.")
+            nivel += 1
+            tentativa = 0
+            nota_nivel = 0
+        else:
+            tentativa += 1
+        
+        if nivel == 10:
+            print("Você venceu! Parabéns!")
             break
-main()        
-
-
-# fodase nao to conseguindo essa merda
+        print(f"Pontos acumulados: {nota_acumulada}")
+        print(f"Nível: {nivel}")
+            
+main()
