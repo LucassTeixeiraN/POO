@@ -35,22 +35,22 @@ def main():
     CONVERSOES = (3.258, 4.095, 4.529, 0.515)
     
     while True:
-        escolha = menu()
-        try:
-            if 1 <= escolha <= 4:
-                valor = float(input("Insira o valor a ser convertido em reais:\n"))
-                print(conversor(valor, CONVERSOES[escolha-1], MOEDAS[escolha-1]))
+        if input("Aperte ENTER para mostrar o Menu") == "":
+            escolha = menu()
+            try:
+                if 1 <= escolha <= 4:
+                    valor = float(input("Insira o valor a ser convertido em reais:\n"))
+                    print(conversor(valor, CONVERSOES[escolha-1], MOEDAS[escolha-1]))
+                elif escolha == 5:
+                    print("Saindo do programa")
+                    print("-"*60)
+                    break
+                else:
+                    print("Insira uma opção válida")
+                    print("-"*60)
+            except ValueError:
+                print("Valor inválido")
                 print("-"*60)
-            elif escolha == 5:
-                print("Saindo do programa")
-                print("-"*60)
-                break
-            else:
-                print("Insira uma opção válida")
-                print("-"*60)
-        except ValueError:
-            print("Valor inválido")
-            print("-"*60)
     
     
 main()
