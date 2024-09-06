@@ -81,7 +81,7 @@ def main():
     while True:
         try:
             # Lê o número de créditos da disciplina
-            num_creditos = int(input("Informe o número de créditos da disciplina: "))
+            num_creditos = int(input("Informe o número de créditos da disciplina(Digite 0 para sair): "))
             if num_creditos > 0:
                 # Lê as notas dos créditos
                 notas = lerNota(num_creditos)
@@ -102,4 +102,9 @@ def main():
                         print(f"Infelizmente você foi reprovado. (Nota necessária no exame: {nota_exame:.2f})")
                         print("-"*66)
                         break
+            else: 
+                print("Saindo do programa.")
+                break        
+        except(ValueError):
+            print("ERRO: Dados inválidos")            
 main()                      
