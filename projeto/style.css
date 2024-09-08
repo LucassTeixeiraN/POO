@@ -5,6 +5,11 @@
     box-sizing: border-box;
     padding: 0;
     margin: 0;
+    transition: 0.1s;
+}
+
+body {
+    background-color: #011638;
 }
 
 header {
@@ -33,9 +38,98 @@ header h1 {
     display: grid;
     justify-items: center;
     align-items: center;
+    cursor: pointer;
 }
 
 #perfil svg {
     width: 70%;
     height: 70%;
+}
+
+main {
+    padding: 38px 106px;
+}
+
+#filtros-btn {
+    width: 123px;
+    height: 44px;
+    background-color: #EEC643;
+    border-radius: 8px;
+    border: none;
+    font-size: 24px;
+    font-weight: bold;
+    color: #011638;
+}
+
+#filtros-btn:hover {
+    cursor: pointer;
+    background-color: #5461b2;
+    color: #EEC643;
+}
+
+#content {
+    padding: 35px 0;
+}
+
+/* component */
+.user-perfil {
+    width: 250px;
+    height: 300px;
+    background-color: #051266;
+    border-radius: 10px;
+}
+
+.user-image {
+    width: 100%;
+    height: 50%;
+    border-radius: 10px 10px 0 0;
+}
+
+.name-container {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 8px;
+}
+
+.user-name {
+    font-size: 24px;
+    color: white;
+    font-weight: bold;
+}
+
+.user-rate {
+    display: flex;
+}
+
+.user-rate svg {
+    width: 15px;
+    fill: white;
+}
+.user-infos {
+    padding: 5px 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.user-bio {
+    font-size: 12px;
+    color: white;
+}
+
+.user-games {
+    display: flex;
+    gap: 5px;
+}
+
+.game-container {
+    width: 50px;
+    height: 18px;
+    border-radius: 50px;
+    background-color: #EEC643;
+    color: #051266;
+    font-size: 14px;
+    font-weight: bold;
+    margin-top: 10px;
+    text-align: center;
 }
