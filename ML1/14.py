@@ -1,5 +1,6 @@
 # 14. Construa um programa que calcule e mostre a soma dos 30 primeiros termos da
 # série:
+# 450/10 + 445/11 + 440/12 + 435/13 + ... 
 
 def calcular_soma_serie():
     soma = 0
