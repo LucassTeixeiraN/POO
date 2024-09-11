@@ -1,15 +1,27 @@
+# 10. Adicione três métodos à classe Student estudada em sala que compara dois objetos
+# Student. Um método deve testar a igualdade. Um segundo método deve testar para
+# menor que. O terceiro método deve testar para maior que ou igual a. Em cada caso, o
+# método retorna o resultado da comparação dos nomes dos dois alunos. Inclua uma
+# função main que testa todos os operadores de comparação. Em seguida, coloque
+# vários objetos Student em uma lista e embaralhe. Em seguida, execute o método sort
+# com esta lista e exiba todas as informações dos alunos.
+
 from student import Student
+import random
 
 def menu():
     try:
-        opcao = int(input("Escolha uma das opções:\n1- Comparar a nota de dois alunos\n2- Colocar as notas dos alunos em ordem crescente\n3- sair"))
-        if opcao < 1 and opcao > 3:
-            raise Exception
-        else:
-            return opcao
+        opcao = int(input("Escolha uma das opções:\n1- Comparar a nota de dois alunos\n2- Colocar as notas dos alunos em ordem crescente\n3- sair\n"))
+        return opcao
     except ValueError:
         print("Valor inválido")
         menu() 
+
+def mapGrades(item):
+    return item.grade
+
+def mapNames(item):
+    return item.name
 
 def main():
     while True:
@@ -36,6 +48,28 @@ def main():
                     break
                 grade = float(input("Student grade: "))
                 students.append(Student(name,grade))
+            gradeList = list(map(mapGrades, students))
+            random.shuffle(gradeList)
+            newNameList = []
+            for i in range(len(gradeList)):
+                newNameList.append(0)
+            gradeList.sort()
+            
+            for i in range(len(gradeList)):
+                for j in students:
+                    if j.checkGrade(gradeList[i]):
+                        newNameList[i] = j.name
+            print(gradeList)
+            print(newNameList)
+                        
+            
+            
+        elif opcao == 3:
+            print("Finalizando programa")
+            break
+        else:
+            print("Opção inválida")
+
 
 
             
