@@ -8,43 +8,46 @@
 # que calcule a velocidade relativa entre a bicicleta e outra dada como parâmetro. Teste
 # o seu novo método.
 
-class bycicle:
-    def __init__(self,velocidade,cadencia, marcha , n_de_serie):
-        self.velocidade=velocidade
-        self.cadencia=cadencia
-        self.marcha=marcha
-        self._n_de_serie=n_de_serie
+class Bike:
+    def __init__(self, velocidade, marcha, cadencia, numSerie):
+        self.velocidade = velocidade
+        self.marcha = marcha
+        self.cadencia = cadencia
+        self.numSerie = numSerie
 
-    def set_marcha(self,marcha):
-        self.marcha=marcha
-
-    def get_velocidade(self):
+    def getVelocidade(self):
         return self.velocidade
     
-    def get_n_de_serie(self):
-       return self._n_de_serie
-    
-    def get_cadencia(self):
-        return self.cadencia
-    
-    def set_n_de_serie(self,n_de_serie):
-        if n_de_serie < 1000: print("insira um n de série válido!")
-        else:self._n_de_serie=n_de_serie
-    
-def main():
-    while True:
-            try:
-                velocidade=float(input("insira a velocidade da bicicleta : "))
-                cadencia=float(input("insira a cadencia atual :"))
-                marcha=int(input("insira a marcha atual:"))
-                if marcha > 18 or marcha < 0 :
-                    print("insira uma marcha valida")
-                    continue
-                n_de_serie=int(input("insira o numero de série: "))
-            except ValueError: print("insira um numero válido")
-                
 
-            bicicleta1=bycicle(velocidade , cadencia,marcha ,n_de_serie)
-            break
-    print(bicicleta1.get_velocidade())
+def criarBike(num):
+    while True:
+        try:
+            velocidade = float(input("Insira a velocidade da bicicleta " + num + ": "))
+            marcha = int(input("Insira a marcha atual da bicicleta" + num + ": "))
+            cadencia = int(input("Insira a cadência (RPM) da bike" + num +": "))
+            numSerie = int(input("Insira o número de série" + num + ": "))
+            if velocidade < 0 or marcha < 0 or marcha > 18 or cadencia < 0 or numSerie < 1000:
+                print("Algum(ns) valor(es) estão incorreto(s). Favor preencha-os corretamente!")
+                criarBike()
+            else:
+                return Bike(velocidade, marcha, cadencia, numSerie)
+        except ValueError :
+            print("insira um número válido!")
+
+
+
+def comparar(bicicleta1, bicicleta2):
+    if(bicicleta1.getVelocidade() < bicicleta2.getVelocidade()):
+        print("A velocidade da Bicicleta 2 é maior que a velocidade da Bicicleta 1")
+    elif(bicicleta1.getVelocidade() == bicicleta2.getVelocidade()):
+        print("A velocidade da Bicicleta 1 é igual a velocidade da Bicicleta 2")
+    else:
+        print("A velocidade da Bicicleta 1 é maior que a velocidade da Bicicleta 2")
+
+
+def main():
+    bicicleta1 = criarBike("1")
+    bicicleta2 = criarBike("2")
+    comparar(bicicleta1, bicicleta2)
+
 main()
