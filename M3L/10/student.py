@@ -11,18 +11,18 @@ class Student:
         self.name = name
         self.grade = grade
 
-    def igualdade(self, outroAluno):
-        if self.grade == outroAluno.grade:
+    def equal(self, anotherStudent):
+        if self.grade == anotherStudent.grade:
             return True
         return False
 
-    def maior(self, outroAluno):
-        if self.grade > outroAluno.grade:
+    def greaterThan(self, anotherStudent):
+        if self.grade > anotherStudent.grade:
             return True
         return False
     
-    def menor(self, outroAluno):
-        if self.grade < outroAluno.grade:
+    def lessThan(self, anotherStudent):
+        if self.grade < anotherStudent.grade:
             return True
         return False
 
