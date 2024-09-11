@@ -14,11 +14,19 @@ class Student:
     def igualdade(self, outroAluno):
         if self.grade == outroAluno.grade:
             return True
+        return False
 
     def maior(self, outroAluno):
         if self.grade > outroAluno.grade:
             return True
-        
+        return False
+    
     def menor(self, outroAluno):
         if self.grade < outroAluno.grade:
             return True
+        return False
+
+    def checkGrade(self, grade):
+        if self.grade == grade:
+            return True 
+        
