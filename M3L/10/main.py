@@ -11,8 +11,8 @@ import random
 
 def menu():
     try:
-        opcao = int(input("Escolha uma das opções:\n1- Comparar a nota de dois alunos\n2- Colocar as notas dos alunos em ordem crescente\n3- sair\n"))
-        return opcao
+        option = int(input("Escolha uma das opções:\n1- Comparar a nota de dois alunos\n2- Colocar as notas dos alunos em ordem crescente\n3- sair\n"))
+        return option
     except ValueError:
         print("Valor inválido")
         menu() 
@@ -20,26 +20,23 @@ def menu():
 def mapGrades(item):
     return item.grade
 
-def mapNames(item):
-    return item.name
-
 def main():
     while True:
-        opcao = menu()
-        if opcao == 1:
+        option = menu()
+        if option == 1:
             students = []
             for i in range(2):
-                name = input("Student name: ")
-                grade = float(input("Student grade: "))
+                name = input("Nome do estudante: ")
+                grade = float(input("Nota do estudante: "))
                 students.append(Student(name,grade))
 
-            if students[0].igualdade(students[1]):
+            if students[0].equal(students[1]):
                 print("Os alunos tiraram a mesma nota")
             if students[0].maior(students[1]):
                 print(f"O aluno {students[0].name} tirou a maior nota")
             if students[0].menor(students[1]):
                 print(f"O aluno {students[1].name} tirou a maior nota")
-        elif opcao == 2:
+        elif option == 2:
             print("Insira os alunos (insira 0 no nome quando não houver mais alunos)")
             students = []
             while True:
@@ -48,23 +45,29 @@ def main():
                     break
                 grade = float(input("Student grade: "))
                 students.append(Student(name,grade))
+            #Coloca todas as notas dos Objects em uma lista e embaralha ela e logo em seguida coloca em ordem crescente
             gradeList = list(map(mapGrades, students))
             random.shuffle(gradeList)
+            gradeList.sort()
+            # cria uma lista e completa ela com 0s
             newNameList = []
             for i in range(len(gradeList)):
                 newNameList.append(0)
-            gradeList.sort()
-            
-            for i in range(len(gradeList)):
+            #Itera pela lista de notas procurando o aluno com essa nota, quando acha, coloca o nome desse aluno no mesmo índice da nota
+            namesAlreadyUsed = []
+            i = 0
+            while i < len(gradeList):
                 for j in students:
-                    if j.checkGrade(gradeList[i]):
+                    if j.checkGrade(gradeList[i]) and not j.name in namesAlreadyUsed:
                         newNameList[i] = j.name
-            print(gradeList)
-            print(newNameList)
-                        
-            
-            
-        elif opcao == 3:
+                        namesAlreadyUsed.append(j.name)
+                        i += 1
+                        print(namesAlreadyUsed)
+
+            for i in range(len(gradeList)):
+                print(f"O aluno {newNameList[i]} tirou {gradeList[i]}")
+    
+        elif option == 3:
             print("Finalizando programa")
             break
         else:
