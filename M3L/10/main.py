@@ -17,55 +17,68 @@ def menu():
         print("Valor inválido")
         menu() 
 
+def newStudent(num):
+    name = input(f"Nome do {num}° estudante: ")
+    grade = float(input(f"Nota do {num}° estudante: "))
+    return Student(name,grade)
+
+def compareStudents(student1, student2):
+    if student1.equal(student2):
+        print("Os alunos tiraram a mesma nota")
+    if student1.greaterThan(student2):
+        print(f"O aluno {student1.getName()} tirou a maior nota")
+    if student1.lessThan(student2):
+        print(f"O aluno {student2.getName()} tirou a maior nota")
+
 def mapGrades(item):
     return item.grade
+
+#Coloca todas as notas dos Objects em uma lista e embaralha ela e logo em seguida coloca em ordem crescente
+def listGrades(list):
+    gradeList = list(map(mapGrades, list))
+    random.shuffle(gradeList)
+    gradeList.sort()
+    return gradeList
+
+def indexMatch(gradeList, studentList):
+    # cria uma lista e completa ela com 0s
+    nameList = []
+    for i in range(len(gradeList)):
+        nameList.append(0)
+
+    #Itera pela lista de notas procurando o aluno com essa nota, quando acha, coloca o nome desse aluno no mesmo índice da nota
+    namesAlreadyUsed = []
+    i = 0
+    while i < len(gradeList):
+        for j in studentList:
+            if j.checkGrade(gradeList[i]) and not j.name in namesAlreadyUsed:
+                nameList[i] = j.name
+                namesAlreadyUsed.append(j.name)
+                i += 1
+    
+    return nameList
 
 def main():
     while True:
         option = menu()
         if option == 1:
-            students = []
-            for i in range(2):
-                name = input("Nome do estudante: ")
-                grade = float(input("Nota do estudante: "))
-                students.append(Student(name,grade))
+            student1 =  newStudent(1)           
+            student2 =  newStudent(2)           
+        
+            compareStudents(student1, student2)
 
-            if students[0].equal(students[1]):
-                print("Os alunos tiraram a mesma nota")
-            if students[0].maior(students[1]):
-                print(f"O aluno {students[0].name} tirou a maior nota")
-            if students[0].menor(students[1]):
-                print(f"O aluno {students[1].name} tirou a maior nota")
         elif option == 2:
-            print("Insira os alunos (insira 0 no nome quando não houver mais alunos)")
+            studentsNum = int(input("Insira o número de alunos da turma: "))
             students = []
-            while True:
-                name = input("Student name: ")
-                if name == "0": 
-                    break
-                grade = float(input("Student grade: "))
-                students.append(Student(name,grade))
-            #Coloca todas as notas dos Objects em uma lista e embaralha ela e logo em seguida coloca em ordem crescente
-            gradeList = list(map(mapGrades, students))
-            random.shuffle(gradeList)
-            gradeList.sort()
-            # cria uma lista e completa ela com 0s
-            newNameList = []
-            for i in range(len(gradeList)):
-                newNameList.append(0)
-            #Itera pela lista de notas procurando o aluno com essa nota, quando acha, coloca o nome desse aluno no mesmo índice da nota
-            namesAlreadyUsed = []
-            i = 0
-            while i < len(gradeList):
-                for j in students:
-                    if j.checkGrade(gradeList[i]) and not j.name in namesAlreadyUsed:
-                        newNameList[i] = j.name
-                        namesAlreadyUsed.append(j.name)
-                        i += 1
-                        print(namesAlreadyUsed)
+            for i in range(studentsNum):
+                students.append(newStudent(i+1))
 
-            for i in range(len(gradeList)):
-                print(f"O aluno {newNameList[i]} tirou {gradeList[i]}")
+            gradesList = listGrades(students)
+
+            nameList = indexMatch(gradesList, students)
+
+            for i in range(len(gradesList)):
+                print(f"O aluno {nameList[i]} tirou {gradesList[i]}")
     
         elif option == 3:
             print("Finalizando programa")
@@ -73,7 +86,4 @@ def main():
         else:
             print("Opção inválida")
 
-
-
-            
 main()
