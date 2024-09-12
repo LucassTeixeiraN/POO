@@ -11,6 +11,9 @@ class Student:
         self.name = name
         self.grade = grade
 
+    def getName(self):
+        return self.name
+
     def equal(self, anotherStudent):
         if self.grade == anotherStudent.grade:
             return True
@@ -28,5 +31,6 @@ class Student:
 
     def checkGrade(self, grade):
         if self.grade == grade:
-            return True 
+            return True
+        return False
         
