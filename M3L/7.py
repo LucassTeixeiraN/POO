@@ -16,10 +16,10 @@ class Fatura:
         self.__quantidade: int = quantidade
         self.__preco: float = preco
 
-    def setNumero(self, numero):
-        self.__numSerie = numero
+    def setNumero(self, numSerie):
+        self.__numSerie = numSerie
 
-    def getNumero(self) -> str:
+    def getNumero(self):
         return self.__numSerie
 
     def setDescricao(self, descricao) :
