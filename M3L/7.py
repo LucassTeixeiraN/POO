@@ -43,7 +43,7 @@ class Fatura:
         else:
             self.__preco = 0.0
 
-    def getPreco(self) -> float:
+    def getPreco(self):
         return self.__preco
 
     def calcularTotal(self):
