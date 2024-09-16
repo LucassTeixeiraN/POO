@@ -8,6 +8,11 @@ class Vehicle:
         self.ownerName = ownerName
         self.velocity = velocity
         self.pneusDirection = pneusDirection
+
+    def __str__(self):
+        print(f"Dono do carro: {self.ownerName}")
+        print(f"Velocidade atual do carro: {self.velocity}km/h")
+        print(f"Angulação do pneu do carro: {self.pneusDirection}°")
     
     def getOwnerName(self):
         return self.ownerName
