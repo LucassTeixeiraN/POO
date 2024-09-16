@@ -7,30 +7,23 @@
 # com esta lista e exiba todas as informações dos alunos.
 
 class Student:
-    def __init__(self, name, grade):
+     def __init__(self, name, grade):
         self.name = name
         self.grade = grade
 
-    def getName(self):
+     def getName(self):
         return self.name
 
-    def equal(self, anotherStudent):
-        if self.grade == anotherStudent.grade:
-            return True
-        return False
+     def __eq__(self, other):
+          return self.grade == other.grade
+     
+     def __gt__(self, other):
+          return self.grade > other.grade
+     
+     def __lt__(self, other):
+          return self.grade < other.grade
 
-    def greaterThan(self, anotherStudent):
-        if self.grade > anotherStudent.grade:
-            return True
-        return False
-    
-    def lessThan(self, anotherStudent):
-        if self.grade < anotherStudent.grade:
-            return True
-        return False
-
-    def checkGrade(self, grade):
+     def checkGrade(self, grade):
         if self.grade == grade:
             return True
         return False
-        
