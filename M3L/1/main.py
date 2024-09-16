@@ -26,7 +26,7 @@ def editionMenu():
 def registerCar():
     owner = input("Insira o nome do propietário do veículo: ")
     velocity = float(input("Insira a velocidade atual do carro (em km/h): "))
-    pneusDirec = float(input("Insira a angulação dos pneus do carro: "))
+    pneusDirec = int(input("Insira a angulação dos pneus do carro: "))
     return Vehicle(owner, velocity, pneusDirec)
     
 def editCar(obj):
@@ -38,7 +38,7 @@ def editCar(obj):
         newVelocity = float(input("Insira a velocidade atual do carro (em km/h): "))
         obj.setVelocity(newVelocity)
     elif editingOption == 3:
-        newDirection = float(input("Insira a angulação dos pneus do carro: "))
+        newDirection = int(input("Insira a angulação dos pneus do carro: "))
         obj.setPneusDirection(newDirection)
     else:
         print("Opção inválida")
@@ -46,25 +46,29 @@ def editCar(obj):
 def main():
     registeredCar = False
     while True:
-        option = menu()
-        if option == 1:
-            car = registerCar()
-            registeredCar = True
-            
-        elif option == 2:
-            print(f"Dono do carro: {car.getOwnerName()}")
-            print(f"Velocidade atual do carro: {car.getVelocity()}")
-            print(f"Angulação do pneu do carro: {car.getPneusDirection()}")
-        elif option == 3:
-            if not registeredCar:
-                print("Não há carros para editar")
-                continue
-            editCar(car)
-        elif option == 4:
-            print("Finalizando programa")
-            break
-        
-        else:
-            print("Opção inválida")
+        if input("Pressione ENTER para ver o menu") == "":
+            option = menu()
+            if option == 1:
+                car = registerCar()
+                registeredCar = True
+                
+            elif option == 2:
+                if not registeredCar:
+                    print("Não há carros para mostrar")
+                    continue
+                car.__str__()
+
+            elif option == 3:
+                if not registeredCar:
+                    print("Não há carros para editar")
+                    continue
+                editCar(car)
+
+            elif option == 4:
+                print("Finalizando programa")
+                break
+
+            else:
+                print("Opção inválida")
             
 main()
