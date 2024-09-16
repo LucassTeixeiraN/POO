@@ -49,11 +49,14 @@ class Fatura:
     def calcularTotal(self):
         return self.__quantidade * self.__preco
 
-
-fatura = Fatura("123", "Computador", 3, 499.99)
-
-print(f"Numero: {fatura.getNumero()}")
-print(f"Descricao: {fatura.getDescricao()}")
-print(f"Quantidade: {fatura.getQuantidade()}")
-print(f"Preco por item: {fatura.getPreco()}")
-print(f"Total: {fatura.calcularTotal()}")
+def main():
+    
+    fatura = Fatura("999", "Bicicleta", 7, 999.99)
+    
+    print(f"Numero: {fatura.getNumero()}")
+    print(f"Descricao: {fatura.getDescricao()}")
+    print(f"Quantidade: {fatura.getQuantidade()}")
+    print(f"Preco por item: {fatura.getPreco()}")
+    print(f"Total: {fatura.calcularTotal()}")
+    
+main()
