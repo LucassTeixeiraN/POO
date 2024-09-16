@@ -10,8 +10,7 @@ def menu():
             print("-"*60)
             option = int(input("Escolha uma opção:\n1- Registrar carro\n2- Ver carro registrado\n3- Editar carro registrado\n4- Sair\n"))
             print("-"*60)
-            if 1 <= option <= 4:
-                return option
+            return option
         except ValueError:
             print("Valor inválido")
             menu()
@@ -23,41 +22,49 @@ def editionMenu():
         except ValueError:
             print("Valor inválido")
             editionMenu()
+            
+def registerCar():
+    owner = input("Insira o nome do propietário do veículo: ")
+    velocity = float(input("Insira a velocidade atual do carro (em km/h): "))
+    pneusDirec = float(input("Insira a angulação dos pneus do carro: "))
+    return Vehicle(owner, velocity, pneusDirec)
+    
+def editCar(obj):
+    editingOption = editionMenu()
+    if editingOption == 1:
+        newOwner = input("Insira o nome do dono do veículo: ")
+        obj.setOnwerName(newOwner)
+    elif editingOption == 2:
+        newVelocity = float(input("Insira a velocidade atual do carro (em km/h): "))
+        obj.setVelocity(newVelocity)
+    elif editingOption == 3:
+        newDirection = float(input("Insira a angulação dos pneus do carro: "))
+        obj.setPneusDirection(newDirection)
+    else:
+        print("Opção inválida")
 
 def main():
     registeredCar = False
     while True:
         option = menu()
         if option == 1:
-            owner = input("Insira o nome do propietário do veículo: ")
-            velocity = float(input("Insira a velocidade atual do carro (em km/h): "))
-            pneusDirec = float(input("Insira a angulação dos pneus do carro: "))
-            car = Vehicle(owner, velocity, pneusDirec)
+            car = registerCar()
             registeredCar = True
+            
         elif option == 2:
             print(f"Dono do carro: {car.getOwnerName()}")
             print(f"Velocidade atual do carro: {car.getVelocity()}")
             print(f"Angulação do pneu do carro: {car.getPneusDirection()}")
         elif option == 3:
-            if registeredCar:
-                editingOption = editionMenu()
-                if editingOption == 1:
-                    newOwner = input("Insira o nome do dono do veículo: ")
-                    car.setOnwerName(newOwner)
-                elif editingOption == 2:
-                    newVelocity = float(input("Insira a velocidade atual do carro (em km/h): "))
-                    car.setVelocity(newVelocity)
-                elif editingOption == 3:
-                    newDirection = float(input("Insira a angulação dos pneus do carro: "))
-                    car.setPneusDirection(newDirection)
-                else:
-                    print("Opção inválida")
-
-            else:
+            if not registeredCar:
                 print("Não há carros para editar")
-        else:
+                continue
+            editCar(car)
+        elif option == 4:
             print("Finalizando programa")
             break
-                    
+        
+        else:
+            print("Opção inválida")
             
 main()
