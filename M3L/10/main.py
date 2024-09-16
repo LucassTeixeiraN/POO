@@ -19,44 +19,23 @@ def menu():
 
 def newStudent(num):
     name = input(f"Nome do {num}° estudante: ")
+    number = int(input(f"Número do {num}° estudante: "))
     grade = float(input(f"Nota do {num}° estudante: "))
-    return Student(name,grade)
+    return Student(name, grade, number)
 
 def compareStudents(student1, student2):
     if student1.__eq__(student2):
         print("Os alunos tiraram a mesma nota")
     if student1.__gt__(student2):
-        print(f"O aluno {student1.getName()} tirou a maior nota")
+        print(f"O aluno {student1.getName()} (número {student1.getNumber()}) tirou a maior nota")
     if student1.__lt__(student2):
-        print(f"O aluno {student2.getName()} tirou a maior nota")
+        print(f"O aluno {student2.getName()} (número {student2.getNumber()}) tirou a maior nota")
 
-def mapGrades(item):
-    return item.grade
+def listOrdenate(students):
+    random.shuffle(students)
+    students.sort()
+    return students
 
-#Coloca todas as notas dos Objects em uma lista e embaralha ela e logo em seguida coloca em ordem crescente
-def listGrades(list):
-    gradeList = list(map(mapGrades, list))
-    random.shuffle(gradeList)
-    gradeList.sort()
-    return gradeList
-
-def indexMatch(gradeList, studentList):
-    # cria uma lista e completa ela com 0s
-    nameList = []
-    for i in range(len(gradeList)):
-        nameList.append(0)
-
-    #Itera pela lista de notas procurando o aluno com essa nota, quando acha, coloca o nome desse aluno no mesmo índice da nota
-    namesAlreadyUsed = []
-    i = 0
-    while i < len(gradeList):
-        for j in studentList:
-            if j.checkGrade(gradeList[i]) and not j.name in namesAlreadyUsed:
-                nameList[i] = j.name
-                namesAlreadyUsed.append(j.name)
-                i += 1
-    
-    return nameList
 
 def main():
     while True:
@@ -72,18 +51,14 @@ def main():
             students = []
             for i in range(studentsNum):
                 students.append(newStudent(i+1))
-
-            gradesList = listGrades(students)
-
-            nameList = indexMatch(gradesList, students)
-
-            for i in range(len(gradesList)):
-                print(f"O aluno {nameList[i]} tirou {gradesList[i]}")
-    
+            listOrd = listOrdenate(students)
+            print("-"*60)
+            for i in listOrd:
+                print(f"O aluno {i.getName()}(número {i.getNumber()}) tirou {i.getGrade()}")
+            print("-"*60)
         elif option == 3:
             print("Finalizando programa")
             break
         else:
             print("Opção inválida")
-
 main()
