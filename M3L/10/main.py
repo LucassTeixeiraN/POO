@@ -23,11 +23,11 @@ def newStudent(num):
     return Student(name,grade)
 
 def compareStudents(student1, student2):
-    if student1.equal(student2):
+    if student1.__eq__(student2):
         print("Os alunos tiraram a mesma nota")
-    if student1.greaterThan(student2):
+    if student1.__gt__(student2):
         print(f"O aluno {student1.getName()} tirou a maior nota")
-    if student1.lessThan(student2):
+    if student1.__lt__(student2):
         print(f"O aluno {student2.getName()} tirou a maior nota")
 
 def mapGrades(item):
