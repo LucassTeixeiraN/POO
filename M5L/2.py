@@ -6,7 +6,10 @@ class Schedule:
     def __init__(self):
         self.contacts = []
 
-def addContact(self, name, tel):
+    def addContact(self, name, tel):
+        if not self.validatePhone(tel):
+            print("Invalid phone number.")
+            return
         for contact in self.contacts:
             if contact['tel'] == tel:
                 print("Contact already exists!")
@@ -24,6 +27,9 @@ def addContact(self, name, tel):
             if contact['name'] == name or contact['tel'] == tel:
                 new_name = input("Enter new name: ")
                 new_tel = input("Enter new phone number: ")
+                if not self.validatePhone(new_tel):
+                    print("Invalid phone number.")
+                    return
                 contact['name'] = new_name
                 contact['tel'] = new_tel
                 print("Contact updated successfully!")
@@ -53,9 +59,9 @@ def addContact(self, name, tel):
         return schedule
 
     @staticmethod
-    def validate_phone_number(tel):
+    def validatePhone(tel):
         # Simples validação de número de telefone (exemplo)
-        if len(tel) == 10 and tel.isdigit():
+        if len(tel) == 11 and tel.isdigit():
             return True
         return False
 
@@ -81,13 +87,13 @@ def main():
                 choice = menu()
                 if choice == 1:
                     name = input("Enter name: ")
-                    tel = input("Enter phone number: ")
+                    tel = input("Enter phone number (DDD+9digits): ")
                     schedule.addContact(name, tel)
                 elif choice == 2:
                     schedule.viewListContacts()
                 elif choice == 3:
-                    name = input("Enter name or phone number to edit: ")
-                    tel = input("Enter phone number to edit: ")
+                    name = input("Enter name to edit: ")
+                    tel = input("Enter phone number (DDD+9digits) to edit: ")
                     schedule.editContact(name, tel)
                 elif choice == 4:
                     name = input("Enter name or phone number to remove: ").lower()
@@ -109,4 +115,4 @@ def main():
                     print("Invalid choice. Please try again.")
         except(ValueError):
             print("Invalid arguments")
-main()    
+main()
