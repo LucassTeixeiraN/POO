@@ -6,9 +6,14 @@ class Schedule:
     def __init__(self):
         self.contacts = []
 
-    def addContact(self, name, tel):
+def addContact(self, name, tel):
+        for contact in self.contacts:
+            if contact['tel'] == tel:
+                print("Contact already exists!")
+                return
         contact = {'name': name, 'tel': tel}
         self.contacts.append(contact)
+        print("Contact added successfully!")
 
     def viewListContacts(self):
         for contact in self.contacts:
@@ -39,6 +44,21 @@ class Schedule:
             if (name and contact['name'] == name) or (tel and contact['tel'] == tel):
                 results.append(contact)
         return results
+
+    @classmethod
+    def from_list(cls, contacts_list):
+        schedule = cls()
+        for contact in contacts_list:
+            schedule.addContact(contact['name'], contact['tel'])
+        return schedule
+
+    @staticmethod
+    def validate_phone_number(tel):
+        # Simples validação de número de telefone (exemplo)
+        if len(tel) == 10 and tel.isdigit():
+            return True
+        return False
+
     
 def menu():
     print("Phonebook Menu:")
