@@ -1,11 +1,10 @@
-
-
 class Invoice:
     
     def __init__(self, numItem, descricao, quantidade, preco):
         self.numeroItem = numItem
         self.descricaoItem = descricao
         
+       
         if quantidade > 0:
             self.quantidadeComprada = quantidade
         else:
@@ -37,7 +36,7 @@ class Invoice:
         return self.descricaoItem
     
     def get_quantidadeComprada(self):
-        return self.quantidadeComprada
+        return self.quantidadeComprada5
     
     def get_precoItem(self):
         return self.precoItem
@@ -45,11 +44,17 @@ class Invoice:
    
     def calcularFatura(self):
         return self.quantidadeComprada * self.precoItem
-
+    
+    @classmethod
+    def incrementar_faturas(cls):
+        cls.total_faturas += 1
+        return cls.total_faturas
+    
+@staticmethod
 def main():
     produtos = []
     continuarCadastrando = "S"
-    print("-" *20, "CADASTRO DE ITEMS", "-" *20, "\n\n")
+    print("-" *20, "CADASTRO DE ITEMS", "-" *20, "\n")
 
     while continuarCadastrando.upper() == "S":
             numItem = int(input("\nDigite o número do item: "))
@@ -70,3 +75,4 @@ def main():
         print(f"Quantidade: {invoice.get_quantidadeComprada()}")
         print(f"Preço Unitário: R${invoice.get_precoItem():.2f}")
         print(f"Valor Total da Fatura: R${invoice.calcularFatura():.2f}")
+main()
