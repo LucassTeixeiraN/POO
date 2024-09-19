@@ -18,26 +18,9 @@ def geradRaios(começo, limite, passo):
 def tabela():
     raios = geradRaios(0, 150, 5)
     for i in raios:
-        if i < 15:
-            print(f'|{i/10}cm       |    {calcVolume(i/10):.2f}cm³    |')
-        elif i < 30:
-            print(f'|{i/10}cm       |    {calcVolume(i/10):.2f}cm³   |')
-        elif i < 65:
-            print(f'|{i/10}cm       |    {calcVolume(i/10):.2f}cm³  |')
-        elif i < 100:
-            print(f'|{i/10}cm       |    {calcVolume(i/10):.2f}cm³ |')
-        elif i < 135:
-            print(f'|{i/10}cm      |    {calcVolume(i/10):.2f}cm³ |')
-        else:
-            print(f'|{i/10}cm      |    {calcVolume(i/10):.2f}cm³|')
+        print("%13s%16s"%(f"{i/10}cm",f"{calcVolume(i/10):.2f}cm³"))
 
 def main():
-    print("+" + "-"*28 + "+")
-    print("|" + " "* 4 + "Raio" + " "*4 + "|"+ " "*5 + "Volume" + " "*4 + "|")
-    print("+" + "-"*28 + "+")
+    print("%13s%15s"%("Raio", "Volume"))
     tabela()
-    print("+" + "-"*28 + "+")
 main()
-
-#OBS:
-# O código da tabela ta feio, eu sei, mas no terminal ta saindo bonitinho
