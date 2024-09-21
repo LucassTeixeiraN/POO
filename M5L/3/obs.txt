@@ -1,2 +1,0 @@
-#Tenho q achar um jeito de botar os bagulho da matéria lá
-#Os classmethods são temporários
