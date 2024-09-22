@@ -21,14 +21,18 @@ def newStudent(num):
     name = input(f"Nome do {num}° estudante: ")
     number = int(input(f"Número do {num}° estudante: "))
     grade = float(input(f"Nota do {num}° estudante: "))
-    return Student(name, grade, number)
+    if grade >= 0 and grade <= 10:
+        return Student(name, grade, number)
+    else:
+        print("Informação inválida")
+        newStudent(num)
 
 def compareStudents(student1, student2):
-    if student1.__eq__(student2):
+    if student1 == student2:
         print("Os alunos tiraram a mesma nota")
-    if student1.__gt__(student2):
+    if student1 > student2:
         print(f"O aluno {student1.getName()} (número {student1.getNumber()}) tirou a maior nota")
-    if student1.__lt__(student2):
+    if student1 < student2:
         print(f"O aluno {student2.getName()} (número {student2.getNumber()}) tirou a maior nota")
 
 def listOrdenate(students):
