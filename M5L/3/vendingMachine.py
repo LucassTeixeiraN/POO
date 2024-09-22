@@ -15,29 +15,29 @@ class VendingMachine:
     
     @classmethod
     def buyProduct(cls, product, money):
-        if cls.__storageCheck(product):
+        if cls.__storageCheck(cls.__amountList[product]):
             print("Esgotado")
-        elif cls.__moneyCheck(money, product):
+        elif cls.__moneyCheck(money, cls.__priceList[product]):
             print("Dinheiro insuficiente")
         else:
-            print(f"Troco devido R${cls.__changeCalculate(money, product):.2f}")
+            print(f"Troco devido R${cls.__changeCalculate(money, cls.__priceList[product]):.2f}")
             cls.__amountDecreasement(product)
 
-    @classmethod
-    def __storageCheck(cls, product):
-        if cls.__amountList[product] < 0:
+    @staticmethod
+    def __storageCheck(product):
+        if  product < 0:
             return True
         return False
     
-    @classmethod
-    def __moneyCheck(cls, money, product):
-        if money < cls.__priceList[product]:
+    @staticmethod
+    def __moneyCheck(money, price):
+        if money < price:
             return True
         return False
     
-    @classmethod
-    def __changeCalculate(cls, money, product):
-        return money-cls.__priceList[product]
+    @staticmethod
+    def __changeCalculate(money, price):
+        return money-price
     
     @classmethod
     def __amountDecreasement(cls, product):
