@@ -15,26 +15,46 @@ def menu():
         return option
     except ValueError:
         print("Valor inválido")
-        menu() 
+        menu()
+
+def gradeCheck(grade):
+    if grade >= 0 and grade <= 10:
+        return True
+    return False
 
 def newStudent(num):
     name = input(f"Nome do {num}° estudante: ")
     number = int(input(f"Número do {num}° estudante: "))
     grade = float(input(f"Nota do {num}° estudante: "))
-    return Student(name, grade, number)
+    if gradeCheck(grade):
+        return Student(name, grade, number)
+    else:
+        print("Informação inválida")
+        newStudent(num)
 
 def compareStudents(student1, student2):
-    if student1.__eq__(student2):
+    if student1 == student2:
         print("Os alunos tiraram a mesma nota")
-    if student1.__gt__(student2):
+    if student1 > student2:
         print(f"O aluno {student1.getName()} (número {student1.getNumber()}) tirou a maior nota")
-    if student1.__lt__(student2):
+    if student1 < student2:
         print(f"O aluno {student2.getName()} (número {student2.getNumber()}) tirou a maior nota")
 
 def listOrdenate(students):
     random.shuffle(students)
     students.sort()
     return students
+
+def studentList():
+    try:
+        studentsNum = int(input("Insira o número de alunos da turma: "))
+        students = []
+        for i in range(studentsNum):
+            students.append(newStudent(i+1))
+        return students
+    except ValueError:
+        print("Valor inválido")
+        studentList()
 
 def main():
     while True:
@@ -46,10 +66,8 @@ def main():
             compareStudents(student1, student2)
 
         elif option == 2:
-            studentsNum = int(input("Insira o número de alunos da turma: "))
-            students = []
-            for i in range(studentsNum):
-                students.append(newStudent(i+1))
+            students = studentList()
+            print(students)
             listOrd = listOrdenate(students)
             print("-"*60)
             for i in listOrd:
