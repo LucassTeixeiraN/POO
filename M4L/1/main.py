@@ -43,6 +43,12 @@ def editCar(obj):
     else:
         print("Opção inválida")
 
+def checkRegisteredCar(reg):
+    if not reg:
+        return True
+    return False
+
+
 def main():
     registeredCar = False
     while True:
@@ -53,13 +59,13 @@ def main():
                 registeredCar = True
                 
             elif option == 2:
-                if not registeredCar:
+                if checkRegisteredCar(registeredCar):
                     print("Não há carros para mostrar")
                     continue
                 car.__str__()
 
             elif option == 3:
-                if not registeredCar:
+                if checkRegisteredCar(registeredCar):
                     print("Não há carros para editar")
                     continue
                 editCar(car)
