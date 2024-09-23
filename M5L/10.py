@@ -7,8 +7,8 @@ class NoughtsAndCrosses:
         for row in self.gridDeJogo:
             print(' | '.join(row))
             print('-' * 9)
-    
-    def display_positions(self):
+    @staticmethod
+    def display_positions():
         print("Posições das casas:")
         for i in range(3):
             for j in range(3):
