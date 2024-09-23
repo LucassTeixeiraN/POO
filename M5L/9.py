@@ -16,53 +16,59 @@ Invoice."""
 class Invoice:
 
     def __init__(self, numItem, descricao, quantidade, preco):
-        self.numeroItem = numItem
-        self.descricaoItem = descricao
+        self.__numeroItem = numItem
+        self.__descricaoItem = descricao
         
        
         if self.verif_maior_zero(quantidade):
-            self.quantidadeComprada = quantidade
+            self.__quantidadeComprada = quantidade
         else:
-            self.quantidadeComprada = 0
+            self.__quantidadeComprada = 0
         
        
         if self.verif_maior_zero(preco):
-            self.precoItem = preco
+            self.__precoItem = preco
         else:
-            self.precoItem = 0
+            self.__precoItem = 0
 
     @staticmethod
     def verif_maior_zero(num):
         return num > 0
 
     def set_numeroItem(self, numItem):
-        self.numeroItem = numItem
+        self.__numeroItem = numItem
     
     def set_descricaoItem(self, descricao):
-        self.descricaoItem = descricao
+        self.__descricaoItem = descricao
 
     def set_quantidadeComprada(self, quantidade):
-        self.quantidadeComprada = quantidade
+        if self.verif_maior_zero(quantidade):
+            self.__quantidadeComprada = quantidade
+        else:
+            self.__quantidadeComprada = 0
 
     def set_precoItem(self, preco):
-        self.precoItem = preco
+        if self.verif_maior_zero(preco):
+            self.__precoItem = preco
+        else:
+            self.__precoItem = 0
 
  
     def get_numeroItem(self):
-        return self.numeroItem
+        return self.__numeroItem
     
     def get_descricaoItem(self):
-        return self.descricaoItem
+        return self.__descricaoItem
     
     def get_quantidadeComprada(self):
-        return self.quantidadeComprada
+        return self.__quantidadeComprada
     
     def get_precoItem(self):
-        return self.precoItem
+        return self.__precoItem
     
    
     def calcularFatura(self):
-        return self.quantidadeComprada * self.precoItem
+        return self.__quantidadeComprada * self.__precoItem
     
 def main():
     produtos = []
@@ -80,7 +86,7 @@ def main():
 
             continuarCadastrando = input("\nDeseja cadastrar outro produto? (S/n): ")
 
-    print("\n Faturas cadastradas: ")
+    print("\nFaturas cadastradas: ")
     for i, invoice in enumerate(produtos, start=1):
         print(f"\nFatura {i}:")
         print(f"Número do Item: {invoice.get_numeroItem()}")
