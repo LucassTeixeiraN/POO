@@ -4,29 +4,18 @@ class SocialNetwork:
     def __init__(self):
         self.users = []
 
-    def add_user(self, nome):
-        user = User(nome)
+    def add_user(self, username: str):
+        user = User(username)
         self.users.append(user)
-        print(f"Usuário {nome} adicionado à rede social.")
 
-    def search_user(self, nome):
-        for user in self.users:
-            if user.nome == nome:
-                return user
-        return None
+    def list_users(self):
+        return [user.username for user in self.users] if self.users else "Nenhum usuário cadastrado ainda."
 
-    def adicionar_amigos(self, nome1, nome2):
-        user1 = self.buscar_User(nome1)
-        user2 = self.buscar_User(nome2)
-        if user1 and user2:
-            user1.adicionar_amigo(user2)
-        else:
-            print("Um ou ambos os usuários não foram encontrados.")
+    def _find_user(self, username: str):
+        return next((user for user in self.users if user.username == username), None)
 
-    def publicar(self, nome, mensagem):
-        user = self.buscar_User(nome)
+    def find_user(self, username: str):
+        user = self._find_user(username)
         if user:
-            user.publicar_mensagem(mensagem)
-            return Post(user, mensagem)
-        else:
-            print("Usuário não encontrado.")
+            return user
+        return f"Usuário {username} não encontrado."

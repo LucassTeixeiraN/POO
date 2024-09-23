@@ -1,16 +1,16 @@
-from user import User
-
 class Post:
-    def __init__(self, user, message):
-        self.user: User = user
+    def __init__(self, user, message: str):
+        self.user = user
         self.message = message
-        self.comments: list[tuple[User, str]] = []
+        self.comments = []
 
-    def add_comment(self, comment, user):
-        self.comments.append((user, comment))
+    @classmethod
+    def create_post(cls, user, message: str):
+        return cls(user, message)
 
-    def show_post(self):
-        print(f"{self.user.name} diz: {self.message}")
-        print("Comentários:")
-        for user, comment in self.comments:
-            print(f"  {user.name}: {comment}")
+    def add_comment(self, comment: str):
+        self.comments.append(comment)
+        return f"Comentário adicionado: '{comment}'"
+
+    def __str__(self):
+        return f"Post de {self.user.username}: {self.message} | Comentários: {len(self.comments)}"
