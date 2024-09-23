@@ -28,7 +28,6 @@ def criarBike(num):
             numSerie = int(input("Insira o número de série" + num + ": "))
             if velocidade < 0 or marcha < 0 or marcha > 18 or cadencia < 0 or numSerie < 1000:
                 print("Algum(ns) valor(es) estão incorreto(s). Favor preencha-os corretamente!")
-                criarBike()
             else:
                 return Bike(velocidade, marcha, cadencia, numSerie)
         except ValueError :
