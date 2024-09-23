@@ -14,22 +14,26 @@ o valor real. Escreva um aplicativo de teste que demonstra as capacidades da cla
 Invoice."""
 
 class Invoice:
-    
+
     def __init__(self, numItem, descricao, quantidade, preco):
         self.numeroItem = numItem
         self.descricaoItem = descricao
         
        
-        if quantidade > 0:
+        if self.verif_maior_zero(quantidade):
             self.quantidadeComprada = quantidade
         else:
             self.quantidadeComprada = 0
         
        
-        if preco > 0:
+        if self.verif_maior_zero(preco):
             self.precoItem = preco
         else:
             self.precoItem = 0
+
+    @staticmethod
+    def verif_maior_zero(num):
+        return num > 0
 
     def set_numeroItem(self, numItem):
         self.numeroItem = numItem
@@ -51,7 +55,7 @@ class Invoice:
         return self.descricaoItem
     
     def get_quantidadeComprada(self):
-        return self.quantidadeComprada5
+        return self.quantidadeComprada
     
     def get_precoItem(self):
         return self.precoItem
@@ -60,12 +64,6 @@ class Invoice:
     def calcularFatura(self):
         return self.quantidadeComprada * self.precoItem
     
-    @classmethod
-    def incrementar_faturas(cls):
-        cls.total_faturas += 1
-        return cls.total_faturas
-    
-@staticmethod
 def main():
     produtos = []
     continuarCadastrando = "S"
