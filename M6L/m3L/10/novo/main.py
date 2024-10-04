@@ -7,7 +7,7 @@
 # com esta lista e exiba todas as informações dos alunos.
 
 from student import Student
-from schoolClass import schoolClass
+from schoolClass import SchoolClass
 
 def menu():
     try:
