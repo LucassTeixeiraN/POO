@@ -43,7 +43,7 @@ def studentsInOrder():
     students = []
     for i in range(studentsNum):
         students.append(newStudent(i+1))
-    myClass = schoolClass(students)
+    myClass = SchoolClass(students)
     print("-"*60)
     myClass.__str__()
 
