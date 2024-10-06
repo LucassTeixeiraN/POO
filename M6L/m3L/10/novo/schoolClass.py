@@ -1,7 +1,7 @@
 from student import Student
 import random
 
-class schoolClass:
+class SchoolClass:
     def __init__(self, students):
         self.__students = students
         self.studentsOrdenate(self.__students)
