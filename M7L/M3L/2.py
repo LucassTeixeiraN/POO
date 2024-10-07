@@ -15,7 +15,7 @@ class Bike:
 
 class Comparador:
     def comparar(self):
-
+        raise NotImplementedError("Método deve ser implementado pela subclasse.")
 
 class ComparadorPorVelocidade(Comparador):
     def comparar(self, bicicleta1, bicicleta2):
