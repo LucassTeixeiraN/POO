@@ -24,20 +24,30 @@ class GuessingGame(GuessingGameInterface):
         else:
             return "Muito alto!"
 
-class CountingGuessingGame(GuessingGame):
-    def __init__(self, number_to_guess):
-        super().__init__(number_to_guess)
+class Counting:
+    def __init__(self):
         self.attempts = 0
     
-    def make_guess(self, guess):
+    def increment_attempts(self):
         self.attempts += 1
-        result = super().make_guess(guess)
-        if self.is_correct_guess(self.number_to_guess, guess):
-            return f"{result} Você acertou em {self.attempts} tentativas!"
-        return f"{result} Tentativas até agora: {self.attempts}"
+    
+    def get_attempts(self):
+        return self.attempts
 
+class CountingGuessingGame:
+    def __init__(self, number_to_guess):
+        self.game = GuessingGame(number_to_guess)
+        self.counter = Counting()
+    
+    def make_guess(self, guess):
+        self.counter.increment_attempts()
+        result = self.game.make_guess(guess)
+        if self.game.is_correct_guess(self.game.number_to_guess, guess):
+            return f"{result} Você acertou em {self.counter.get_attempts()} tentativas!"
+        return f"{result} Tentativas até agora: {self.counter.get_attempts()}"
 
-game = CountingGuessingGame.create_game(random.randint(1, 100))
+# Criação do jogo
+game = CountingGuessingGame(random.randint(1, 100))
 print(game.make_guess(20))
 print(game.make_guess(30))
 print(game.make_guess(25))
