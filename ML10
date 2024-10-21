@@ -1,1 +1,42 @@
+# Crie uma classe Person, contendo os atributos encapsulados, com seus respectivos
+# seletores (getters) e modificadores (setters), e ainda o construtor padrão. Atributos:
+# nome, endereço, CPF, RG e telefone.
+
+class Person:
+    def __init__(self,name,address,cpf,rg,telephone):
+        self.name=name
+        self.__address=address
+        self.__cpf=cpf
+        self.__rg=rg
+        self.__telephone=telephone
+
+    def get_Name(self):
+        return self.name
+    
+    def set_Name(self, name):
+        self.name=name
+        
+    def get_Address(self):
+        return self.__address
+    
+    def set_Address(self, address):
+        self.__address=address
+
+    def get_Cpf(self):
+        return self.__cpf
+    
+    def set_Cpf(self, cpf):
+        self.__cpf=cpf
+
+    def get_Rg(self):
+        return self.__rg
+    
+    def set_Rg(self, rg):
+        self.__rg=rg
+
+    def get_Telephone(self):
+        return self.__telephone
+
+    def set_Telephone(self,telephone):
+        self.__telephone=telephone
 
