@@ -22,6 +22,3 @@ class Player:
         if self.score > 21:
             return False
         return  True
-        
-    def get_playing(self):
-        return self.__playing
