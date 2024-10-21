@@ -12,20 +12,15 @@ class Bike:
         return (f"Bicicleta {self.numSerie}: Velocidade = {self.velocidade}, "
                 f"Marcha = {self.marcha}, Cadência = {self.cadencia}")
 
-
-class Comparador:
-    def comparar(self):
-        raise NotImplementedError("Método deve ser implementado pela subclasse.")
-
-class ComparadorPorVelocidade(Comparador):
-    def comparar(self, bicicleta1, bicicleta2):
+class ComparadorPorVelocidade: 
+    @staticmethod # não depende de nenhum estado da classe comprarPorvelocidade#
+    def comparar(bicicleta1, bicicleta2):
         if bicicleta1.getVelocidade() < bicicleta2.getVelocidade():
             return "A velocidade da Bicicleta 2 é maior que a da Bicicleta 1"
         elif bicicleta1.getVelocidade() == bicicleta2.getVelocidade():
             return "A velocidade da Bicicleta 1 é igual à da Bicicleta 2"
         else:
             return "A velocidade da Bicicleta 1 é maior que a da Bicicleta 2"
-
 
 def criarBike(num):
     while True:
@@ -40,7 +35,6 @@ def criarBike(num):
                 return Bike(velocidade, marcha, cadencia, numSerie)
         except ValueError:
             print("Insira um número válido!")
-
 
 def main():
     bicicleta1 = criarBike("1")
