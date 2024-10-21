@@ -90,8 +90,12 @@ def main():
         print("5 - Outro (genérico)")
 
         tipo = int(input("Digite o número correspondente ao tipo de produto: "))
-
-        tipo_produto = tipos_produto.get(tipo, tipos_produto[5]) 
+            
+        if tipo < 1 or tipo > 5:
+                print("Tipo inválido. Usando tipo genérico.")
+                tipo_produto = tipos_produto[5]
+        else:
+            tipo_produto = tipos_produto[tipo]
 
         produto = Invoice(numItem, descricao, quantidade, preco, tipo_produto)
         produtos.append(produto)
