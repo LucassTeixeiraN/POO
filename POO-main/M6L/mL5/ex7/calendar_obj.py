@@ -1,29 +1,21 @@
 from month import Month
 
 class Calendar:
+    holidays = {
+        "01-01": "Ano Novo",
+        "21-04": "Tiradentes",
+        "01-05": "Dia do Trabalho",
+        "07-09": "Independência",
+        "12-10": "Nossa Senhora Aparecida",
+        "02-11": "Finados",
+        "15-11": "Proclamação da República",
+        "25-12": "Natal",
+        "31-12": "Ano Novo",
+    }
+
     def __init__(self, year: int):
         self.year = year
         self.month = Month(year)
-
-    def show_month(self, month: int):
-        if not (1 <= month <= 12):
-            print("Mês inválido. Digite um valor entre 1 e 12.")
-            return
-
-        days = self.month.get_days(month)
-        print(f"\nMês: {month}, Ano: {self.year}")
-        print("D S T Q Q S S")
-
-        start_day = self.month.get_first_day_of_month(month)
-
-        for _ in range(start_day):
-            print("  ", end=" ")
-
-        for day in range(1, days + 1):
-            print(f"{str(day).zfill(2)}", end=" ")
-            if (day + start_day) % 7 == 0:
-                print()
-        print("\n")
 
     def calculate_days_between(self, date1: str, date2: str):
         day1, month1, year1 = map(int, date1.split('-'))
@@ -33,6 +25,13 @@ class Calendar:
         total_days2 = self.__calculate_days_since_start(year2, month2, day2)
 
         return abs(total_days2 - total_days1)
+    
+    @classmethod
+    def verifyHoliday(cls, day: int, month: int):
+        date_key = f"{str(day).zfill(2)}-{str(month).zfill(2)}" # Adiciona zeros no começo dos dias
+        if cls.holidays.get(date_key, False):
+            return f'A data {cls.holidays[date_key]} é feriado'
+        return 'A data não é feriado'
 
     def __calculate_days_since_start(self, year: int, month: int, day: int):
         total_days = 0
