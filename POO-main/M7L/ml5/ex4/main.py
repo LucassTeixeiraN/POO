@@ -9,7 +9,20 @@ def main():
     game.add_player(Player("João"))
     game.add_player(Player("Pedro"))
     game.add_player(Player("Paulo"))
-    game.start_game()
+    startGame(game)
+    
+def startGame(game: CardsGame):
+    try:
+        value = input('Deseja que o baralho seja embaralhado? (s/n) ')
+        if value.lower() == 's':
+            game.start_game(game.shuffle)
+        elif value.lower() == 'n':
+            game.start_game(game.ordenate)
+        else:
+            raise Exception
+    except:
+        print("Digite um valor válido!")
+        startGame(game)
 
 if __name__ == "__main__":
     main()
