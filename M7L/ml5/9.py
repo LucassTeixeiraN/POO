@@ -1,6 +1,13 @@
-class Invoice:
 
-    def __init__(self, numItem, descricao, quantidade, preco):
+
+class TipoProduto:
+    def __init__(self, taxa_imposto):
+        self.taxa_imposto = taxa_imposto
+
+    def calcular_imposto(self, fatura):
+        return fatura * self.taxa_imposto
+class Invoice:
+    def __init__(self, numItem, descricao, quantidade, preco, tipo_produto):
         self.__numeroItem = numItem
         self.__descricaoItem = descricao
         
@@ -13,6 +20,8 @@ class Invoice:
             self.__precoItem = preco
         else:
             self.__precoItem = 0
+            
+        self.tipo_produto = tipo_produto
 
     @staticmethod
     def verif_maior_zero(num):
@@ -50,31 +59,23 @@ class Invoice:
     
     def calcularFatura(self):
         return self.__quantidadeComprada * self.__precoItem
- 
-    def calcularImposto(self):
-        return self.calcularFatura() * 1.10
     
-class Periferico(Invoice):
     def calcularImposto(self):
-        return self.calcularFatura() * 1.25
-
-class PecaHardware(Invoice):
-    def calcularImposto(self):
-        return self.calcularFatura() * 1.13
-
-class EquipamentoAudio(Invoice):
-    def calcularImposto(self):
-        return self.calcularFatura() * 1.05
-
-class IoT(Invoice):
-    def calcularImposto(self):
-        return self.calcularFatura() * 1.2
+        return self.tipo_produto.calcular_imposto(self.calcularFatura())
+ 
 
 def main():
     produtos = []
     continuarCadastrando = "S"
-    print("-" * 20, "CADASTRO DE ITEMS", "-" * 20, "\n")
+    print("-" * 20, "CADASTRO DE ITENS", "-" * 20, "\n")
 
+    tipos_produto = {
+        1: TipoProduto(1.25),  
+        2: TipoProduto(1.13),  
+        3: TipoProduto(1.05),  
+        4: TipoProduto(1.20),  
+        5: TipoProduto(1.10),  
+    }
     while continuarCadastrando.upper() == "S":
         numItem = int(input("\nDigite o número do item: "))
         descricao = input("Digite a descrição do item: ")
@@ -87,20 +88,12 @@ def main():
         print("3 - Equipamento de Áudio")
         print("4 - IoT")
         print("5 - Outro (genérico)")
-        
+
         tipo = int(input("Digite o número correspondente ao tipo de produto: "))
 
-        if tipo == 1:
-            produto = Periferico(numItem, descricao, quantidade, preco)
-        elif tipo == 2:
-            produto = PecaHardware(numItem, descricao, quantidade, preco)
-        elif tipo == 3:
-            produto = EquipamentoAudio(numItem, descricao, quantidade, preco)
-        elif tipo == 4:
-            produto = IoT(numItem, descricao, quantidade, preco)
-        else:
-            produto = Invoice(numItem, descricao, quantidade, preco) 
+        tipo_produto = tipos_produto.get(tipo, tipos_produto[5]) 
 
+        produto = Invoice(numItem, descricao, quantidade, preco, tipo_produto)
         produtos.append(produto)
 
         continuarCadastrando = input("\nDeseja cadastrar outro produto? (S/n): ")
