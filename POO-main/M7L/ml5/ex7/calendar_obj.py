@@ -1,18 +1,6 @@
 from month import Month
 
 class Calendar:
-    holidays = {
-        "01-01": "Ano Novo",
-        "21-04": "Tiradentes",
-        "01-05": "Dia do Trabalho",
-        "07-09": "Independência",
-        "12-10": "Nossa Senhora Aparecida",
-        "02-11": "Finados",
-        "15-11": "Proclamação da República",
-        "25-12": "Natal",
-        "31-12": "Ano Novo",
-    }
-
     def __init__(self, year: int):
         self.year = year
         self.month = Month(year)
