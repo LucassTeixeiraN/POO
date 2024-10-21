@@ -50,17 +50,27 @@ class Fatura:
     def calcularTotal(self):
         return self.__quantidade * self.__preco
 
-
-class FaturaComDesconto(Fatura):
+class FaturaComDesconto:
     def __init__(self, numSerie, descricao, quantidade, preco, desconto):
-        super().__init__(numSerie, descricao, quantidade, preco)
+        self.fatura = Fatura(numSerie, descricao, quantidade, preco)
         self.__desconto = desconto
 
     def calcularTotal(self):
-        total = super().calcularTotal()
+        total = self.fatura.calcularTotal()
         return total - (total * (self.__desconto / 100))
 
+    def getNumero(self):
+        return self.fatura.getNumero()
 
+    def getDescricao(self):
+        return self.fatura.getDescricao()
+
+    def getQuantidade(self):
+        return self.fatura.getQuantidade()
+
+    def getPreco(self):
+        return self.fatura.getPreco()
+        
 def main():
     fatura = Fatura("999", "Bicicleta", 7, 999.99)
     print(f"Numero: {fatura.getNumero()}")
