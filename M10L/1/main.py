@@ -38,7 +38,7 @@ def userActions(opt):
         print("-"*60)
     elif opt == "0":
         print("-"*60)
-        userTypeMenu()
+        main()
     else:
         print("-"*60)
         ErrorMessage("Opção inválida")
