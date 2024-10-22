@@ -1,0 +1,5 @@
+main - getEmployeeInfos verifies 
+main - getSupplierInfos verifies 
+
+supplier - balanceVerify
+supplier - getBalance
