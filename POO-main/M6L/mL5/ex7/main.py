@@ -10,21 +10,24 @@ def main():
     while True:
         option = menu()
 
-        if option == 1:
-            month = int(input("Digite o mês: "))
-            calendar.month.show(month)
-        elif option == 2:
-            day = int(input("Digite o dia: "))
-            month = int(input("Digite o mês: "))
-            print(calendar.verifyHoliday(day, month))
-        elif option == 3:
-            date1 = input("Digite a primeira data (dd-mm-yyyy): ")
-            date2 = input("Digite a segunda data (dd-mm-yyyy): ")
-            print(f"A diferença de dias entre as datas é de {calendar.calculate_days_between(date1, date2)} dias.")
-        elif option == 0:
-            break
-        else:
-            print("Opção inválida. Tente novamente.")
+        try:
+            if option == 1:
+                month = int(input("Digite o mês: "))
+                calendar.month.show(month)
+            elif option == 2:
+                day = int(input("Digite o dia: "))
+                month = int(input("Digite o mês: "))
+                print(calendar.verifyHoliday(day, month))
+            elif option == 3:
+                date1 = input("Digite a primeira data (dd-mm): ")
+                date2 = input("Digite a segunda data (dd-mm): ")
+                print(f"A diferença de dias entre as datas é de {calendar.calculate_days_between(date1, date2)} dias.")
+            elif option == 0:
+                break
+            else:
+                print("Opção inválida. Tente novamente.")
+        except:
+            print('Entrada inválida')
 
 def menu():
     print("1 - Exibir calendário")
