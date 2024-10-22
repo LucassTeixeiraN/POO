@@ -15,5 +15,5 @@ class BrHolidays:
     def verifyHoliday(cls, day: int, month: int):
         date_key = f"{str(day).zfill(2)}-{str(month).zfill(2)}"
         if cls.holidays.get(date_key, False):
-            return f'A data {cls.holidays[date_key]} é feriado'
+            return f'{cls.holidays[date_key]} é feriado'
         return 'A data não é feriado'

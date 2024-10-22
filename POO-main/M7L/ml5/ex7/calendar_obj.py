@@ -1,4 +1,5 @@
 from month import Month
+from typing import Callable
 
 class Calendar:
     def __init__(self, year: int):
@@ -15,11 +16,8 @@ class Calendar:
         return abs(total_days2 - total_days1)
     
     @classmethod
-    def verifyHoliday(cls, day: int, month: int):
-        date_key = f"{str(day).zfill(2)}-{str(month).zfill(2)}" # Adiciona zeros no começo dos dias
-        if cls.holidays.get(date_key, False):
-            return f'A data {cls.holidays[date_key]} é feriado'
-        return 'A data não é feriado'
+    def verifyHoliday(cls, day: int, month: int, function: Callable):
+        return function(day, month)
 
     def __calculate_days_since_start(self, year: int, month: int, day: int):
         total_days = 0

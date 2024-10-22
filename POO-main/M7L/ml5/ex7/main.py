@@ -2,6 +2,8 @@
 deve ter métodos para exibir o calendário de um determinado mês, verificar se uma
 data é feriado e calcular a diferença de dias entre duas datas.'''
 from calendar_obj import Calendar
+from br_holidays import BrHolidays
+from us_holidays import UsHolidays
 
 def main():
     year = int(input("Digite o ano: "))
@@ -14,9 +16,12 @@ def main():
             month = int(input("Digite o mês: "))
             calendar.month.show(month)
         elif option == 2:
+            region = input('Deseja verificar os feriados do Brasil ou do EUA? (BR/ EUA)')
             day = int(input("Digite o dia: "))
             month = int(input("Digite o mês: "))
-            print(calendar.verifyHoliday(day, month))
+
+            function = BrHolidays.verifyHoliday if region == 'BR' else UsHolidays.verifyHoliday
+            print(calendar.verifyHoliday(day, month, function))
         elif option == 3:
             date1 = input("Digite a primeira data (dd-mm-yyyy): ")
             date2 = input("Digite a segunda data (dd-mm-yyyy): ")
