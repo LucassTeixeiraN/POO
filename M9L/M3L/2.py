@@ -1,4 +1,4 @@
-class SistemaDeBicicletas:  # Classe gerenciadora
+class SistemaDeBicicletas: 
     def __init__(self):
         self.bicicletas = []
 
