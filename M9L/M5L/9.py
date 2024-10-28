@@ -1,9 +1,13 @@
 class TipoProduto:
     def __init__(self, taxa_imposto):
         self.taxa_imposto = taxa_imposto
+        self.invoices = [] 
 
     def calcular_imposto(self, fatura):
         return fatura * self.taxa_imposto
+
+    def adicionar_invoice(self, invoice):
+        self.invoices.append(invoice) 
 
 class Invoice:
     def __init__(self, numItem, descricao, quantidade, preco, tipo_produto):
@@ -21,6 +25,7 @@ class Invoice:
             self.__precoItem = 0
             
         self.tipo_produto = tipo_produto
+        self.tipo_produto.adicionar_invoice(self)  
 
     @staticmethod
     def verif_maior_zero(num):
@@ -59,7 +64,7 @@ def main():
         print("5 - Outro (genérico)")
 
         tipo = int(input("Digite o número correspondente ao tipo de produto: "))
-            
+        
         tipo_produto = tipos_produto.get(tipo, tipos_produto[5])  # Usa genérico se tipo inválido
 
         # Cria Invoice com injeção de dependência
@@ -78,5 +83,11 @@ def main():
         print(f"Valor Total da Fatura: R${invoice.calcular_fatura():.2f}")
         print(f"Valor Total com Imposto: R${invoice.calcular_imposto():.2f}")
 
+    # Exibe as invoices associadas a cada tipo de produto
+    print("\nInvoices por tipo de produto:")
+    for tipo, produto in tipos_produto.items():
+        print(f"\nTipo de Produto {tipo}:")
+        for inv in produto.invoices:
+            print(f"- Fatura {inv._Invoice__numeroItem}")
 
 main()
