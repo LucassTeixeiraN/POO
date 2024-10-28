@@ -1,7 +1,8 @@
 class Event:
     def __init__(self, nome, data):
         self.nome = nome
-        self.data = data  
+        self.data = data
+        data.setEvento(self) 
 
     def getNome(self):
         return self.nome
@@ -14,6 +15,8 @@ class Event:
     
     def setData(self, data):
         self.data = data
+        data.setEvento(self)  
 
     def __str__(self):
-        return f"Nova data do evento '{self.nome}': {self.data}"
+        return f"Nova data do evento '{self.nome}': {self.data}"   
+    
