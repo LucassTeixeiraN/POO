@@ -1,7 +1,7 @@
 class Event:
     def __init__(self, nome, data):
         self.nome = nome
-        self.data = data  # data é uma instância da classe Date
+        self.data = data  
 
     def getNome(self):
         return self.nome
