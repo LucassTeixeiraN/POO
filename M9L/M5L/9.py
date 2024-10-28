@@ -65,9 +65,9 @@ def main():
 
         tipo = int(input("Digite o número correspondente ao tipo de produto: "))
         
-        tipo_produto = tipos_produto.get(tipo, tipos_produto[5])  # Usa genérico se tipo inválido
+        tipo_produto = tipos_produto.get(tipo, tipos_produto[5]) 
 
-        # Cria Invoice com injeção de dependência
+    
         produto = Invoice(numItem, descricao, quantidade, preco, tipo_produto)
         produtos.append(produto)
 
@@ -83,7 +83,7 @@ def main():
         print(f"Valor Total da Fatura: R${invoice.calcular_fatura():.2f}")
         print(f"Valor Total com Imposto: R${invoice.calcular_imposto():.2f}")
 
-    # Exibe as invoices associadas a cada tipo de produto
+
     print("\nInvoices por tipo de produto:")
     for tipo, produto in tipos_produto.items():
         print(f"\nTipo de Produto {tipo}:")
