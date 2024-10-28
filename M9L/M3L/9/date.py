@@ -1,12 +1,13 @@
 class Date:
-    def __init__(self, dia, mes, ano):
+    def __init__(self, dia, mes, ano, evento=None):
         self.dia = dia
         self.mes = mes
         self.ano = ano
+        self.evento = evento  
 
     def getDia(self):
         return self.dia
-    
+
     def setDia(self, dia):
         self.dia = dia
 
@@ -22,5 +23,11 @@ class Date:
     def setAno(self, ano):
         self.ano = ano
     
+    def getEvento(self):
+        return self.evento
+    
+    def setEvento(self, evento):
+        self.evento = evento
+
     def __str__(self):
         return f"{self.dia}/{self.mes}/{self.ano}"
