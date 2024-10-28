@@ -19,13 +19,13 @@ class Invoice:
         self.numeroItem = numItem
         self.descricaoItem = descricao
         
-        # Quantidade não Positiva = 0
+
         if quantidade > 0:
             self.quantidadeComprada = quantidade
         else:
             self.quantidadeComprada = 0
         
-        # Preço não Positivo = 0
+
         if preco > 0:
             self.precoItem = preco
         else:
@@ -70,7 +70,7 @@ class Pedido:
     def adicionar_fatura(self, fatura):
         self.faturas.append(fatura)
     
-    # Exibir todas as faturas no pedido
+
     def exibir_faturas(self):
         if not self.faturas:
             print("Nenhuma fatura no pedido.")
@@ -84,7 +84,7 @@ class Pedido:
                 print(f"Preço Unitário: R${invoice.get_precoItem():.2f}")
                 print(f"Valor Total da Fatura: R${invoice.calcularFatura():.2f}")
     
-    # Calcular o valor total do pedido (somando todas as faturas)
+
     def calcular_total_pedido(self):
         total = sum(fatura.calcularFatura() for fatura in self.faturas)
         return total
