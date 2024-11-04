@@ -1,0 +1,131 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+* {
+    font-family: "Roboto", sans-serif;
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    transition: 0.1s;
+}
+
+body {
+    background-color: #011638;
+}
+
+header {
+    width: 100vw;
+    height: 80px;
+    display: flex;
+    justify-content: space-between;
+    background-color: #051266;
+    align-items: center;
+    padding: 0 10px;
+}
+
+header h1 {
+    font-size: 48px;
+    font-weight: bold;
+    color: white;
+}
+
+#perfil {
+    width: 66px;
+    height: 66px;
+    background-color: white;
+    border-radius: 100%;
+    fill: #051266;
+    size: 20px;
+    display: grid;
+    justify-items: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+#perfil svg {
+    width: 70%;
+    height: 70%;
+}
+
+main {
+    padding: 38px 106px;
+    display: flex;
+    gap: 15px;
+}
+
+#perfil-infos {
+    width: 50%;
+}
+
+#perfil-photo {
+    width: 424px;
+    height: 424px;
+    background-color: gray;
+    border-radius: 50%;
+}
+
+#name-container {
+    width: 424px;
+    display: grid;
+    justify-content: center;
+    margin: 15px 0 30px 0;
+}
+
+#name-container h3 {
+    font-size: 48px;
+    color : white;
+}
+
+.user-rate {
+    display: flex;
+    fill: white;
+
+}
+
+#user-contacts {
+    width: 424px;
+    background-color: #0e1ca4;
+    color: white;
+    padding: 10px 15px;
+    border-radius: 5px;
+}
+
+#bio-container {
+    width: 50%;
+    background-color: gray;
+    border-radius: 10px;
+}
+
+#bio {
+    padding: 10px 15px;
+}
+
+.accordion {
+    background-color: #eee;
+    color: #444;
+    cursor: pointer;
+    padding: 18px;
+    width: 100%;
+    text-align: left;
+    border: none;
+    outline: none;
+    transition: 0.4s;
+    display: flex;
+    justify-content: space-between;
+}
+  
+.active, .accordion:hover {
+    background-color: #ccc;
+}
+  
+.panel {
+    padding: 0 18px;
+    background-color: white;
+    display: none;
+    overflow: hidden;
+    height: 50px;
+}
+
+.accordion #rate {
+    display: flex;
+    width: 15%;
+}
