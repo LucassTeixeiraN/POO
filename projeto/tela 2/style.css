@@ -110,7 +110,8 @@ main {
     outline: none;
     transition: 0.4s;
     display: flex;
-    justify-content: space-between;
+    justify-content: space-bet
+    ween;
 }
   
 .active, .accordion:hover {
