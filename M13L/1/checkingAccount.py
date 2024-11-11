@@ -4,9 +4,6 @@ class CheckingAccount(Account):
     def __init__(self, name, document, accountNumber, balance, accountType):
         super().__init__(name, document, accountNumber, balance, accountType)
 
-    def deposit(self, value):
-        self.setBalance(self.getBalance + value)
-
     def transfer(self, value):
         if self.checkBalance(value):
             self.setBalance(self.getBalance - value)
@@ -19,4 +16,4 @@ class CheckingAccount(Account):
         print(f"Tipo da conta: {self.getAccountType()}")
         print(f"Número da conta: {self.getAccountNumber()}")
         print(f"Documento: {self.getDocument()}")
-        print(f"Saldo: {self.getBalance()}")
+        print(f"Saldo: R${self.getBalance():.2f}")

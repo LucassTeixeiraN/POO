@@ -37,6 +37,9 @@ class Account(ABC):
     
     def checkBalance(self, value):
         return self.__balance > value
+    
+    def deposit(self, value):
+        self.setBalance(self.getBalance + value)
 
     @abstractmethod
     def showAccount(self):
