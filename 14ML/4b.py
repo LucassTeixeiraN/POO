@@ -1,30 +1,24 @@
-
 from abc import ABC, abstractmethod
 
-class SalarioInterface(ABC):
+class Salario(ABC):
     @abstractmethod
     def salario(self):
         pass
 
-class DescricaoInterface(ABC):
+
+class Descricao(ABC):
     @abstractmethod
     def descricao(self):
         pass
 
-
-class Employee(SalarioInterface, DescricaoInterface):
+class Employee(Salario, Descricao):
     def __init__(self, nome, idade, salario_base):
         self.nome = nome
         self.idade = idade
         self.salario_base = salario_base
 
-    @abstractmethod
-    def salario(self):
-        pass
-
-    @abstractmethod
-    def descricao(self):
-        pass
+    def descricao_base(self):
+        return f"{self.nome} tem {self.idade} anos." 
 
 
 class Gerente(Employee):
@@ -36,7 +30,7 @@ class Gerente(Employee):
         return self.salario_base + self.bonus
 
     def descricao(self):
-        return f"{self.nome} é o Gerente da empresa com , {self.idade} anos."
+        return f"{self.descricao_base()} Ele/a é o Gerente da empresa."
 
 
 class Vendedor(Employee):
@@ -48,7 +42,7 @@ class Vendedor(Employee):
         return self.salario_base + self.comissao
 
     def descricao(self):
-        return f"{self.nome}, é o Vendedor da empresa com , {self.idade} anos."
+        return f"{self.descricao_base()} Ele/a é o Vendedor da empresa."
 
 
 class Recepcionista(Employee):
@@ -59,7 +53,7 @@ class Recepcionista(Employee):
         return self.salario_base
 
     def descricao(self):
-        return f"{self.nome},é o Recepcionista da empresa com, {self.idade} anos."
+        return f"{self.descricao_base()} Ela/e é a Recepcionista da empresa."
 
 
 class Secretario(Employee):
@@ -71,9 +65,12 @@ class Secretario(Employee):
         return self.salario_base + self.bonus
 
     def descricao(self):
-        return f"{self.nome},é o Secretário da empresa com, {self.idade} anos."
+        return f"{self.descricao_base()} Ele/a é o Secretário da empresa."
 
-class InputDisplay():
+
+
+class InputDisplay:
+    
     def showInput():
         funcionarios = [
             Gerente("Carlos", 45, 5000, 2000),
@@ -82,9 +79,10 @@ class InputDisplay():
             Secretario("Roberto", 35, 3000, 1000)
         ]
 
-        print("-"*60 , "FUNCIONÀRIOS","-"*60)
+        print("-" * 60, "FUNCIONÁRIOS", "-" * 60)
         for func in funcionarios:
             print(func.descricao())
             print(f"Salário: R${func.salario():.2f}")
             print("-" * 40)
+
     showInput()
