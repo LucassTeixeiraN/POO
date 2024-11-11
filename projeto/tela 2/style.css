@@ -91,17 +91,18 @@ main {
 
 #bio-container {
     width: 50%;
-    background-color: gray;
+    background-color: #0e1ca4;
     border-radius: 10px;
 }
 
 #bio {
     padding: 10px 15px;
+    color: white;
 }
 
 .accordion {
-    background-color: #eee;
-    color: #444;
+    background-color: #3646da;
+    color: white;
     cursor: pointer;
     padding: 18px;
     width: 100%;
@@ -110,20 +111,34 @@ main {
     outline: none;
     transition: 0.4s;
     display: flex;
-    justify-content: space-bet
-    ween;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 5px;
+    fill: white;
+}
+
+.active {
+    border-radius: 5px 5px 0 0;
 }
   
 .active, .accordion:hover {
-    background-color: #ccc;
+    background-color: #EEC643;
+    color: #3646da;
+    fill: #3646da;
+}
+
+.accordion:hover #rate{
+    fill: #3646da;
 }
   
 .panel {
-    padding: 0 18px;
-    background-color: white;
+    padding: 5px 18px;
+    background-color: #eed581;
     display: none;
     overflow: hidden;
     height: 50px;
+    border-radius: 0 0 5px 5px;
+    color: #0e1ca4;
 }
 
 .accordion #rate {
