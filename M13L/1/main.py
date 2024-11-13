@@ -37,7 +37,12 @@ def colectUserInfos():
     document = input("Documento: ")
     accountNumber = input("Número da conta: ")
     balance = verifyFloat("Saldo da conta: ")
-    return name, document, accountNumber, balance
+    if not bank.findAccount(accountNumber) and not bank.findAccountByDocument(document):
+        return name, document, accountNumber, balance
+    else:
+        print("O documento e/ou o número da conta já está sendo usado")
+        print("-"*60)
+        return colectUserInfos()
 
 def newCheckingAccount():
     name, document, accountNumber, balance = colectUserInfos()
@@ -45,20 +50,23 @@ def newCheckingAccount():
 
 def newSavingAccount():
     name, document, accountNumber, balance = colectUserInfos()
-    tax = verifyFloat("Taxa aplicada ao mês: ")
-    return SavingAccount(name, document, accountNumber, balance, "poupança", tax)
+    tax = verifyFloat("Taxa aplicada ao mês (em porcentagem): ")
+    return SavingAccount(name, document, accountNumber, balance, "poupança", tax/100)
 
 def newInvestmentAccount():
     name, document, accountNumber, balance = colectUserInfos()
     return InvestimentAccount(name, document, accountNumber, balance, "investimento")
 
-def createAccount():
+def createAccountMenu():
     print("-"*60)
     print("1. Conta corrente")
     print("2. Conta poupança")
     print("3. Conta de investimentos")
     print("0. Voltar")
-    accountType = input("Escolha um tipo de conta: ")
+    return input("Escolha um tipo de conta: ")
+
+def createAccount():
+    accountType = createAccountMenu()
     if accountType == "1":
         return newCheckingAccount()
     elif accountType == "2":
@@ -70,6 +78,7 @@ def checkAccount():
     numberAccount = input("Número da conta: ")
     account = bank.findAccount(numberAccount)
     return account
+
 
 def main():
     global bank
