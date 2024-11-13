@@ -26,7 +26,7 @@ function addGame() {
     let gameSelection = document.getElementById("games-options")
     let game = gameSelection.options[gameSelection.selectedIndex].text
 
-    if (game !== "Selecione um jogo" && findGame(game) === true){
+    if (game !== "Selecione um jogo" && findGame(game) === -1){
         // Cria os elementos
         let gameContainer = document.createElement("div")
         let gameName = document.createElement("p")
@@ -42,8 +42,10 @@ function addGame() {
         deleteBtn.innerHTML = "X"
 
         //Setta os atributos
-        gameContainer.setAttribute("id", "game-container")
-        deleteBtn.setAttribute("onclick", "deleteGame()")
+        gameContainer.setAttribute("class", `games--container`)
+        gameContainer.setAttribute("id", `games-container-${game}`)
+        deleteBtn.setAttribute("id", game)
+        deleteBtn.setAttribute("onclick", "deleteGame(this.getAttribute('id'))")
 
         //Adiciona o jogo no array
         gameArr.push(game)
@@ -54,9 +56,17 @@ function addGame() {
 function findGame(game){
     for(var i = 0; i < gameArr.length; i++) {
         if(gameArr[i] === game) {
-            return false
+            return i
         }
     }
-    return true
+    return -1
 }
 
+//Delete o elemento e o remove do array
+function deleteGame(e) {
+    element = document.getElementById(`games-container-${e}`)
+    element.remove()
+    arrIdx = findGame(e)
+    gameArr.splice(arrIdx, 1)
+    console.log(gameArr);
+}

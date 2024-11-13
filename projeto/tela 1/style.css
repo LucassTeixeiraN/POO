@@ -205,7 +205,7 @@ main {
     flex-wrap: wrap;
 }
 
-#game-container {
+.games--container {
     background-color: #051266;
     gap: 10px;
     display: flex;
@@ -215,12 +215,12 @@ main {
     border: 1px solid #051266;
 }
 
-#game-container p {
+.games--container p {
     color: #EEC643;
     font-weight: bold;
 }
 
-#game-container button {
+.games--container button {
     background-color: transparent;
     border: none;
     color: #EEC643;
@@ -228,20 +228,20 @@ main {
     font-size: 15px;
 }
 
-#game-container:hover{
+.games--container:hover{
     background-color: #EEC643;
 }
 
-#game-container:hover p{
+.games--container:hover p{
     color: #051266;
     cursor: default;
 }
 
-#game-container:hover button{
+.games--container:hover button{
     color: #051266;
 }
 
-#game-container button:hover{
+.games--container button:hover{
     cursor: pointer;
 }
 
