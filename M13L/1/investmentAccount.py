@@ -5,6 +5,8 @@ class InvestimentAccount(Account):
     def __init__(self, name, document, accountNumber, balance, accountType):
         super().__init__(name, document, accountNumber, balance, accountType)
         self.lastInvestment = 0
+        self.tax = 0
+
 
     def investment(self):
         self.lastInvestment = random.random()
