@@ -1,0 +1,277 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+* {
+    font-family: "Roboto", sans-serif;
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    transition: 0.1s;
+}
+
+body {
+    background-color: #011638;
+}
+
+header {
+    width: 100vw;
+    height: 80px;
+    display: flex;
+    justify-content: space-between;
+    background-color: #051266;
+    align-items: center;
+    padding: 0 10px;
+}
+
+header h1 {
+    font-size: 48px;
+    font-weight: bold;
+    color: white;
+}
+
+#perfil {
+    width: 66px;
+    height: 66px;
+    background-color: white;
+    border-radius: 100%;
+    fill: #051266;
+    size: 20px;
+    display: grid;
+    justify-items: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+#perfil svg {
+    width: 70%;
+    height: 70%;
+}
+
+main {
+    padding: 38px 106px;
+}
+
+#filtros-btn {
+    width: 123px;
+    height: 44px;
+    background-color: #EEC643;
+    border-radius: 8px;
+    border: none;
+    font-size: 24px;
+    font-weight: bold;
+    color: #011638;
+}
+
+#filtros-btn:hover {
+    cursor: pointer;
+    background-color: #5461b2;
+    color: #EEC643;
+}
+
+#content {
+    padding: 35px 0;
+}
+
+/* component */
+.user-perfil {
+    width: 250px;
+    height: 300px;
+    background-color: #051266;
+    border-radius: 10px;
+}
+
+.user-image {
+    width: 100%;
+    height: 50%;
+    border-radius: 10px 10px 0 0;
+}
+
+.name-container {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 8px;
+}
+
+.user-name {
+    font-size: 24px;
+    color: white;
+    font-weight: bold;
+}
+
+.user-rate {
+    display: flex;
+}
+
+.user-rate svg {
+    width: 15px;
+    fill: white;
+}
+.user-infos {
+    padding: 5px 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.user-bio {
+    font-size: 12px;
+    color: white;
+}
+
+.user-games {
+    display: flex;
+    gap: 5px;
+}
+
+.game-container {
+    width: 50px;
+    height: 18px;
+    border-radius: 50px;
+    background-color: #EEC643;
+    color: #051266;
+    font-size: 14px;
+    font-weight: bold;
+    margin-top: 10px;
+    text-align: center;
+}
+
+#filtro-container {
+    background-color: #EEC643;
+    position: absolute;
+    top: 153px;
+    width: 420px;
+    border-radius: 5px;
+}
+
+.modal-disabled {
+    height: 0;
+    padding: 0;
+
+    -webkit-animation: scale-up-ver-top-rev-del 0.4s cubic-bezier(0.390, 0.575, 0.565, 1.000) 0.4s reverse both;
+    animation: scale-up-ver-top-rev-del 0.4s cubic-bezier(0.390, 0.575, 0.565, 1.000) 0.4s reverse both;
+}
+
+.modal-activated {
+    min-height: 100px;
+    padding: 10px;
+    -webkit-animation: scale-up-ver-top 0.4s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
+    animation: scale-up-ver-top 0.4s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
+}
+
+.disabled {
+    transition: none;
+    display: none;
+    -webkit-animation: scale-up-ver-top-rev 0.4s cubic-bezier(0.390, 0.575, 0.565, 1.000) reverse both;
+    animation: scale-up-ver-top-rev 0.4s cubic-bezier(0.390, 0.575, 0.565, 1.000) reverse both;
+}
+
+.activated {
+    transition: none;
+    display: inherit;
+    -webkit-animation: scale-up-ver-top-del 0.4s cubic-bezier(0.390, 0.575, 0.565, 1.000) 0.4s both;
+    animation: scale-up-ver-top-del 0.4s cubic-bezier(0.390, 0.575, 0.565, 1.000) 0.4s both;
+}
+
+#games-options, #add-game-btn {
+    background-color: #051266;
+    color: #EEC643;
+    height: 30px;
+    border: 0px solid black;
+    outline: none;
+    border-radius: 5px;
+    font-weight: bold;
+    border: 1px solid #051266;
+
+}
+
+#games-options {
+    width: 130px;
+}
+
+#add-game-btn {
+    width: 90px;
+}
+
+#games-options:hover, #add-game-btn:hover {
+    background-color: #EEC643;
+    color: #051266;
+    cursor: pointer;
+}
+
+#games-selected {
+    margin: 10px 0;
+    display: flex;
+    gap: 5px;
+    width: 100%;
+    flex-wrap: wrap;
+}
+
+#game-container {
+    background-color: #051266;
+    gap: 10px;
+    display: flex;
+    padding: 4px 7px;
+    border-radius: 50px;
+    justify-content: space-between;
+    border: 1px solid #051266;
+}
+
+#game-container p {
+    color: #EEC643;
+    font-weight: bold;
+}
+
+#game-container button {
+    background-color: transparent;
+    border: none;
+    color: #EEC643;
+    font-weight: bold;
+    font-size: 15px;
+}
+
+#game-container:hover{
+    background-color: #EEC643;
+}
+
+#game-container:hover p{
+    color: #051266;
+    cursor: default;
+}
+
+#game-container:hover button{
+    color: #051266;
+}
+
+#game-container button:hover{
+    cursor: pointer;
+}
+
+
+@-webkit-keyframes scale-up-ver-top {
+    0% {
+      -webkit-transform: scaleY(0.4);
+              transform: scaleY(0.4);
+      -webkit-transform-origin: 100% 0%;
+              transform-origin: 100% 0%;
+    }
+    100% {
+      -webkit-transform: scaleY(1);
+              transform: scaleY(1);
+      -webkit-transform-origin: 100% 0%;
+              transform-origin: 100% 0%;
+    }
+  }
+  @keyframes scale-up-ver-top {
+    0% {
+      -webkit-transform: scaleY(0.4);
+              transform: scaleY(0.4);
+      -webkit-transform-origin: 100% 0%;
+              transform-origin: 100% 0%;
+    }
+    100% {
+      -webkit-transform: scaleY(1);
+              transform: scaleY(1);
+      -webkit-transform-origin: 100% 0%;
+              transform-origin: 100% 0%;
+    }
+  }
+  
