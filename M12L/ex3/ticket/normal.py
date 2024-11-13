@@ -1,4 +1,4 @@
-from ticket import Ticket
+from .ticket import Ticket
 
 class Normal(Ticket):
     def __init__(self, value):
