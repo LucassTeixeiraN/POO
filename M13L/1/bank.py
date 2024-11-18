@@ -28,6 +28,10 @@ class Bank:
         return accounts.index(account)
     
     def deleteAccount(self, accountNumber: str) -> None:
-        self.__accounts.pop(self.findAccountIdx(self.getAccouts(), self.findAccount(accountNumber)))
-
+        account = self.findAccount(accountNumber)
+        if account:
+            self.__accounts.pop(self.findAccountIdx(self.getAccouts(), account))
+            print("Conta deletada")
+        else:
+            print("Essa conta não existe")
     

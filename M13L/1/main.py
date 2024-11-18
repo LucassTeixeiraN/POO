@@ -15,7 +15,7 @@ def menu():
     print("6. Investir")
     print("7. Deletar conta")
     print("0. Sair")
-    
+    print()
     return input("Escolha uma opção: ")
 
 def verifyFloat(msg):
@@ -60,7 +60,6 @@ def newInvestmentAccount():
     return InvestimentAccount(name, document, accountNumber, balance, "investimento")
 
 def createAccountMenu():
-    print("-"*60)
     print("1. Conta corrente")
     print("2. Conta poupança")
     print("3. Conta de investimentos")
@@ -87,7 +86,9 @@ def main():
     bank = Bank()
 
     while True:
+        print("-"*60)
         option = menu()
+        print("-"*60)
 
         if option == "1":
             bank.addAccount(createAccount())
@@ -122,11 +123,19 @@ def main():
                     print("Valor inválido")
             else:
                 print("Essa conta não existe ou não é uma poupança")
-
         elif option == "6":
             account = checkAccount()
             if account and account.getAccountType() == "investimento":
                 account.calculateInvestment()
             else:
                 print("Essa conta não existe ou não é uma conta de investimento")
+        elif option == "7":
+            accountNbr = input("Número da conta: ")
+            bank.deleteAccount(accountNbr)
+        elif option == "0":
+            print("Saindo do programa...")
+            break
+        else:
+            print("Opção inválida")
+
 main()
