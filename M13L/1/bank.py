@@ -7,7 +7,7 @@ class Bank:
 
     def getAccouts(self) -> List[Account]:
         return self.__accounts
-
+    
     def addAccount(self, account: Account) -> None:
         self.__accounts.append(account)
 
@@ -22,6 +22,12 @@ class Bank:
             if i.getDocument() == document:
                 return i
         return None    
-        
+    
+    @staticmethod
+    def findAccountIdx(accounts: List[Account], account: Account) -> int:
+        return accounts.index(account)
+    
+    def deleteAccount(self, accountNumber: str) -> None:
+        self.__accounts.pop(self.findAccountIdx(self.getAccouts(), self.findAccount(accountNumber)))
 
     

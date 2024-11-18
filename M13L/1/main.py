@@ -13,7 +13,9 @@ def menu():
     print("4. Transferir dinheiro")
     print("5. Calcular rendimento da conta")
     print("6. Investir")
-
+    print("7. Deletar conta")
+    print("0. Sair")
+    
     return input("Escolha uma opção: ")
 
 def verifyFloat(msg):
