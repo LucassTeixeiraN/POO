@@ -18,7 +18,7 @@ class Account(ABC):
         return self.__accountNumber
     
     def getBalance(self) -> float:
-        return self.__balance
+        return self.balance
     
     def getAccountType(self) -> str:
         return self.__accountType
@@ -43,6 +43,6 @@ class Account(ABC):
         print("Depósito realizado")
         print("-"*60)
 
-    # @abstractmethod
-    # def showAccount(self):
-    #     pass
+    @abstractmethod
+    def showAccount(self):
+        pass

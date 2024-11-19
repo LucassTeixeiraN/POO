@@ -13,7 +13,6 @@ class CheckingAccount(Account):
             print("Saldo insuficiente")
             print("-"*60)
 
-
     def showAccount(self) -> None:
         print("-"*60)
         print("Informações da conta")

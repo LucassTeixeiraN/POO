@@ -1,3 +1,4 @@
-
 class TransferMixIn:
-    pass
+
+    def transfer(self, value):
+        self.setBalance(self.balance-value)

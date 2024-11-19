@@ -1,3 +1,3 @@
 class GainMixIn:
-    def calculateGain(self):
-        return self.balance * self.tax
+    def calculateGain(self, time: int) -> float:
+        return self.balance * ((1 + self.tax)**time)

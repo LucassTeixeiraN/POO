@@ -1,7 +1,7 @@
 '''1. Implemente um sistema de Banco com seus 3 tipos de contas (corrente, poupança e
 investimento), evidenciando a classe Account como uma classe abstrata.'''
 
-from accounts import SavingAccount
+from accounts import SavingAccount, CheckingAccount
 from bank import Bank
 
 def menu():
@@ -44,9 +44,9 @@ def colectUserInfos():
         print("-"*60)
         return colectUserInfos()
 
-# def newCheckingAccount():
-#     name, document, accountNumber, balance = colectUserInfos()
-#     return CheckingAccount(name, document, accountNumber, balance, "corrente")
+def newCheckingAccount():
+    name, document, accountNumber, balance = colectUserInfos()
+    return CheckingAccount(name, document, accountNumber, balance, "corrente")
 
 def newSavingAccount():
     name, document, accountNumber, balance = colectUserInfos()
@@ -67,12 +67,9 @@ def createAccountMenu():
 def createAccount():
     accountType = createAccountMenu()
     if accountType == "1":
-        pass
-        # return newCheckingAccount()
+        return newCheckingAccount()
     elif accountType == "2":
-        acc = newSavingAccount()
-        print(acc.calculateGain())
-        return acc
+        return newSavingAccount()
     # elif accountType == "3":
         # return newInvestmentAccount()
 
@@ -108,7 +105,7 @@ def main():
                 print("Essa conta não existe")
         elif option == "4":
             account = checkAccount()
-            if account and account.getAccountType() == "corrente":
+            if account and account.getAccountType() != "investimento":
                 value = verifyFloat("Valor a ser transferido: ")
                 account.transfer(value)
             else:
