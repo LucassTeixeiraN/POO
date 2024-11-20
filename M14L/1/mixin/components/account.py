@@ -1,13 +1,15 @@
 from abc import ABC, abstractmethod
+from .transactionLoggerMixin import TransactionLoggerMixin
 
-class Account(ABC):
+class Account(ABC, TransactionLoggerMixin):
     def __init__(self, name: str, document: str, accountNumber: str, balance: float, accountType: str):
         self.__name = name
         self.__document = document
         self.__accountNumber = accountNumber
-        self.balance = balance
+        self.__balance = balance
         self.__accountType = accountType
 
+    #Getters
     def getName(self) -> str:
         return self.__name
 
@@ -18,11 +20,12 @@ class Account(ABC):
         return self.__accountNumber
     
     def getBalance(self) -> float:
-        return self.balance
+        return self.__balance
     
     def getAccountType(self) -> str:
         return self.__accountType
 
+    #Setters
     def setName(self, name:str) -> None:
         self.__name = name
 
@@ -35,12 +38,14 @@ class Account(ABC):
     def setBalance(self, balance:float) -> None:
         self.__balance = balance
     
+
+
     def checkBalance(self, value:float) -> bool:
         return self.__balance > value
     
     def deposit(self, value: float) -> None:
         self.setBalance(self.getBalance() + value)
-        print("Depósito realizado")
+        self.transactionLog(value, "Depósito bancário")
         print("-"*60)
 
     @abstractmethod

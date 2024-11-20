@@ -1,8 +1,17 @@
-from components import Account, TransferMixIn
+from components import Account
 
-class CheckingAccount(Account, TransferMixIn):
+class CheckingAccount(Account):
     def __init__(self, name: str, document: str, accountNumber: str, balance: float, accountType: str):
         super().__init__(name, document, accountNumber, balance, accountType)
+
+    def transfer(self, value: float) -> None:
+        if self.checkBalance(value):
+            self.setBalance(self.getBalance() - value)
+            self.transactionLog(value, "Transação bancária")
+            print("-"*60)
+        else:
+            print("Saldo insuficiente")
+            print("-"*60)
 
     def showAccount(self) -> None:
         print("-"*60)

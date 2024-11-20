@@ -1,7 +1,7 @@
 '''1. Implemente um sistema de Banco com seus 3 tipos de contas (corrente, poupança e
 investimento), evidenciando a classe Account como uma classe abstrata.'''
 
-from accounts import SavingAccount, CheckingAccount
+from accounts import SavingAccount, CheckingAccount, InvestmentAccount
 from bank import Bank
 
 def menu():
@@ -53,9 +53,9 @@ def newSavingAccount():
     tax = verifyFloat("Taxa aplicada ao mês (em porcentagem): ")
     return SavingAccount(name, document, accountNumber, balance, "poupança", tax/100)
 
-# def newInvestmentAccount():
-#     name, document, accountNumber, balance = colectUserInfos()
-#     return InvestimentAccount(name, document, accountNumber, balance, "investimento")
+def newInvestmentAccount():
+    name, document, accountNumber, balance = colectUserInfos()
+    return InvestmentAccount(name, document, accountNumber, balance, "investimento")
 
 def createAccountMenu():
     print("1. Conta corrente")
@@ -70,8 +70,8 @@ def createAccount():
         return newCheckingAccount()
     elif accountType == "2":
         return newSavingAccount()
-    # elif accountType == "3":
-        # return newInvestmentAccount()
+    elif accountType == "3":
+        return newInvestmentAccount()
 
 def checkAccount():
     numberAccount = input("Número da conta: ")
@@ -114,11 +114,10 @@ def main():
             account = checkAccount()
             if account and account.getAccountType() == "poupança":
                 time = verifyInt("Insira o tempo em meses: ")
-                gain = account.calculateGain(time)
                 if time > 0:
-                    print(f"Ganho estimado: R${gain:.2f}")
+                    account.gainApplication(time)
                 else:
-                    print("Valor inválido")
+                    print("Opção inválida")
             else:
                 print("Essa conta não existe ou não é uma poupança")
         elif option == "6":
