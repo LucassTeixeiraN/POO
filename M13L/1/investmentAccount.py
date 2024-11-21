@@ -4,7 +4,6 @@ import random
 class InvestimentAccount(Account):
     def __init__(self, name: str, document: str, accountNumber: str, balance: float, accountType: str):
         super().__init__(name, document, accountNumber, balance, accountType)
-        self.__lastBalance = 0
         self.__tax = 0
 
     def getLastBalance(self) -> int:
