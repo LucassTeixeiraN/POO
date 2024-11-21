@@ -1,0 +1,7 @@
+1 - Análise de complexidade: Vamos pegar alguns exemplos de looping que o sistemas tem e apresentamos a complexidade deles
+2 - Algoritmo de pesquisa: Para filtrar os perfis
+3 - Algoritmo de ordenação: Para ordenar os perfis/avaliações (??)
+4 - Listas ligadas: Podemos salvar os perfis/avaliações que estão renderizados em uma lista ligada
+5 - Pilhas e Filas: ??
+6 - Árvores binárias: ?? 
+7 - Grafos: ?? 

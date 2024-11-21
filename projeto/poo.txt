@@ -1,0 +1,8 @@
+1- Variações de atributos e metodos: Já usamos
+2 - Associação de classes: Qqr coisa
+3 - Injeção de dependencia: A classe Avaliação não existe sem a classe Perfil (dá pra seguir algo nessa linha)
+4 - Associação bilateral: ?
+5 - Herança: ADM herda de Perfil (??)
+6 - Polimorfismo: Alguma coisa envolvendo o de cima
+7 - Classe abstrata: Dá pra usar em interface
+8 - Interface: Perfil
