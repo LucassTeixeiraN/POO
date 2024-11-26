@@ -78,13 +78,15 @@ class Departamento:
             print("-" * 40)
 
 class Empresa:
-    def __init__(self):
+    def __init__(self, nome):
+        self.nome = nome
         self.departamentos = []
 
     def adicionar_departamento(self, departamento):
         self.departamentos.append(departamento)
 
     def listar_funcionarios(self):
+        print(f"Empresa: {self.nome}")
         for departamento in self.departamentos:
             departamento.listar_funcionarios()
 
@@ -96,7 +98,7 @@ departamento_administracao = Departamento("Administração")
 departamento_administracao.adicionar_funcionario(Gerente("Carlos", 45, 5000, 2000))
 departamento_administracao.adicionar_funcionario(Secretario("Roberto", 35, 3000, 1000))
 
-empresa = Empresa()
+empresa = Empresa("TechCorp")
 empresa.adicionar_departamento(departamento_vendas)
 empresa.adicionar_departamento(departamento_administracao)
 
