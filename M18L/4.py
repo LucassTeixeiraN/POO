@@ -88,7 +88,6 @@ class Empresa:
         for departamento in self.departamentos:
             departamento.listar_funcionarios()
 
-# Exemplo de uso
 departamento_vendas = Departamento("Vendas")
 departamento_vendas.adicionar_funcionario(Vendedor("Ana", 30, 3000, 1500))
 departamento_vendas.adicionar_funcionario(Recepcionista("Julia", 25, 2000))
