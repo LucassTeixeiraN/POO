@@ -8,4 +8,5 @@ class Specialization(Student):
         return f'Especialização: {self.nome}'
 
     def estudar(self):
-        print(f'{self.nome} está estudando para a sua especialização')
+        self.notify(f"{self.nome}, ótimo progresso na sua especialização!")
+        print(f'{self.nome} está estudando para a sua especialização.')

@@ -2,7 +2,7 @@ from .student import Student
 
 class Doctorate(Student):
     def __init__(self, nome):
-        super().__init__(nome)
+        self.nome = nome
 
     def __str__(self):
         return f'Doutorado: {self.nome}'

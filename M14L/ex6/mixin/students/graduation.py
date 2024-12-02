@@ -8,5 +8,5 @@ class Graduation(Student):
         return f'Graduação: {self.nome}'
 
     def estudar(self):
-        print(f'{self.nome} está estudando para a sua graduação')
-        
+        self.notify(f"{self.nome}, continue se dedicando à sua graduação!")
+        print(f'{self.nome} está estudando para a sua graduação.')

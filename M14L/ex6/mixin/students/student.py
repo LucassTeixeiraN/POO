@@ -1,6 +1,7 @@
 from abc import ABC, abstractmethod
+from .mixins import NotificationMixin
 
-class Student(ABC):
+class Student(ABC, NotificationMixin):
     def __init__(self, nome):
         self.nome = nome
     
